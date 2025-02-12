@@ -1,0 +1,14 @@
+.editProfile {
+    background-color: #fff;
+    padding: 20px 30px;
+
+    .profile_box {
+        >div {
+            display: flex;
+            align-items: center;
+            input{
+                width: 240px;
+            }
+        }
+    }
+}
