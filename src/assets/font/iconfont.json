@@ -1,0 +1,30 @@
+{
+  "id": "4335207",
+  "name": "my_note",
+  "font_family": "iconfont",
+  "css_prefix_text": "",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10027383",
+      "name": "待付款",
+      "font_class": "daifukuan",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "18978056",
+      "name": "user",
+      "font_class": "user1",
+      "unicode": "e74f",
+      "unicode_decimal": 59215
+    },
+    {
+      "icon_id": "1029188",
+      "name": "列表",
+      "font_class": "list-1-copy",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    }
+  ]
+}

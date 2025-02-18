@@ -1,9 +1,6 @@
-.home_container {
-    height: 100vh;
-
+.layout_container {
     .ant-layout {
         height: 100vh;
-
         .ant-layout-sider-children,
         .ant-menu {
             background-color: rgb(33, 48, 76);
@@ -13,23 +10,21 @@
             .ant-menu-item-icon {
                 color: #fff;
             }
-
-            .ant-menu-submenu-selected {
                 .ant-menu-item-selected {
+                background-color: #0085fe!important;
                     .ant-menu-title-content {
-                        color: rgb(33, 48, 76);
+                        color: #fff;
                     }
                 }
-            }
 
             .logo {
-                background-color: rgb(33, 48, 76);
+                background-color: #232f44;
                 color: #fff;
                 height: 64px;
                 display: flex;
                 align-items: center;
                 padding-left: 16px;
-                border-bottom: 1px solid #111;
+                border-bottom: 1px solid #222;
 
                 span {
                     margin-left: 12px;
@@ -47,24 +42,32 @@
         }
 
         Header {
-            border-bottom: 1px solid #ccc;
-            background-color: #21304c!important;
+            border-bottom: 1px solid  #222;
+            background-color: #21304c !important;
             display: flex;
             justify-content: flex-end;
             color: #fff;
-            span{
+
+            span {
                 margin: 0 10px;
             }
-            span:nth-child(4){
-                margin-right: 20px;
+
+            span:nth-child(3) {
+                margin-right: 30px;
                 cursor: pointer;
 
             }
         }
+        .ant-layout-footer{
+            border-top: 1px solid #222;
+            color: #fff;
+            background-color: #232f44;
+        }
     }
-.ant-layout-content{
-    padding: 24px 16px 0;
-    background-color: rgb(225, 225, 225);
-}
+
+    .ant-layout-content {
+        padding: 24px 26px 0;
+        background-color: #232f44;
+    }
 
 }

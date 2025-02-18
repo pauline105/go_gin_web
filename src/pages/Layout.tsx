@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme, Dropdown, message } from 'antd';
 import {
   UserOutlined,
   BellOutlined,
@@ -14,7 +14,8 @@ import {
   CheckCircleOutlined,
   SmileOutlined,
   MessageOutlined,
-  HomeOutlined 
+  HomeOutlined,
+  ContactsOutlined
 } from "@ant-design/icons";
 import type { MenuProps } from 'antd';
 import '../style/layout/index.scss'
@@ -26,10 +27,17 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+  // 跳轉路由
   const onClick: MenuProps['onClick'] = (e) => {
     navigate(e.key)
     console.log('click ', e);
   };
+  // 退出登錄
+  const loginOut = () => {
+    localStorage.clear()
+    navigate('/login')
+    message.success("退出登錄")
+  }
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -37,7 +45,8 @@ const Home: React.FC = () => {
     {
       key: "home",
       icon: React.createElement(HomeOutlined),
-      label: "首頁"},
+      label: "首頁"
+    },
 
     {
       key: "notifications",
@@ -56,7 +65,23 @@ const Home: React.FC = () => {
         },
       ],
     },
-
+    {
+      key: "",
+      icon: React.createElement(ContactsOutlined),
+      label: "員工管理",
+      children: [
+        {
+          key: "userManage",
+          icon: React.createElement(ContactsOutlined),
+          label: "用戶管理",
+        },
+        {
+          key: "active_projects",
+          icon: React.createElement(FileTextOutlined),
+          label: "進行中的項目",
+        },
+      ]
+    },
     {
       key: "projects",
       icon: React.createElement(FolderOutlined),
@@ -68,7 +93,7 @@ const Home: React.FC = () => {
           label: "進行中的項目",
         },
         {
-          key: "archived-projects",
+          key: "archived_projects",
           icon: React.createElement(FileTextOutlined),
           label: "已存檔項目",
         },
@@ -131,9 +156,22 @@ const Home: React.FC = () => {
       ],
     },
   ];
- 
+  const menuItems: MenuProps['items'] = [
+    {
+      key: '1',
+      label: (
+        <span>修改密碼</span>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <span onClick={loginOut}>退出登錄</span>
+      ),
+    },
+  ]
   return (
-    <div className="home_container">
+    <div className="layout_container">
       <Layout>
         <Sider
           width={"256px"}
@@ -148,11 +186,11 @@ const Home: React.FC = () => {
           <div className='menu_box'>
             <Menu
               onClick={onClick}
-              defaultSelectedKeys={['1']}
+              defaultSelectedKeys={['home']}
               defaultOpenKeys={['sub1']}
               mode="inline"
               items={items}
-              
+
             />
           </div>
         </Sider>
@@ -161,8 +199,13 @@ const Home: React.FC = () => {
             <div>
               <span>2025年1月6日 晴</span>
               <span>星期一</span>
-              <span>你好,管理員</span>
-              <span>退出</span>
+              <span>
+                <Dropdown menu={{ items: menuItems }}>
+                  <a onClick={(e) => e.preventDefault()}>
+                    你好,管理員
+                  </a>
+                </Dropdown>
+              </span>
             </div>
           </Header>
           <Content>

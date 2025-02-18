@@ -1,0 +1,114 @@
+.home_container {
+    .title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .navigate_card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+
+        >div {
+            width: 160px;
+            height: 80px;
+            background-color: rgba(89, 108, 216, 0.8) ;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    }
+
+    .data_box {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        align-items: center;
+
+        >div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            background-color: #fff;
+            height: 90px;
+            border-radius: 8px;
+
+            >span {
+                margin-right: 15px;
+
+                i {
+                    font-size: 22px;
+                }
+            }
+
+            >div {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                >span:nth-child(1) {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        >div:nth-child(1) {
+            background: linear-gradient(to right, #0085ff, #22a8eb);
+        }
+
+        >div:nth-child(2) {
+            background: linear-gradient(to right, #2ca7ed, #41d5fc);
+        }
+
+        >div:nth-child(3),
+        >div:nth-child(6) {
+            width: 1px;
+            height: 32px;
+            background-color: #888;
+
+        }
+
+        >div:nth-child(4) {
+            background: linear-gradient(to right, #8787ff, #a896fa);
+        }
+
+        >div:nth-child(5) {
+            background: linear-gradient(to right, #b687ff, #cf87fc);
+        }
+
+        >div:nth-child(7) {
+            background: linear-gradient(to right, #d87df5, #e87ae7);
+        }
+
+        >div:nth-child(8) {
+            background: linear-gradient(to right, #f77cd4, #ff7cb8);
+        }
+
+    }
+
+    .echarts_text {
+        color: #fff;
+        font-size: 18px;
+        margin: 22px 0;
+    }
+
+    .echarts_box {
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            width: 48%;
+            background-color: #21304c;
+            padding-top: 10px;
+        }
+
+        .echarts-for-react {
+            height: 400px !important;
+            width: 100%;
+        }
+    }
+}

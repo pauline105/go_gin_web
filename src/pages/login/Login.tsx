@@ -17,7 +17,7 @@ function Login() {
         const res = await login(values)
         if (res.data.httpStatus === '200') {
             message.success("登陸成功,即將跳轉")
-            // localStorage.setItem('token', res.data.token)
+            localStorage.setItem('token', res.data.token)
             setTimeout(() => {
                 navigate('/home', { state: { id: res.data.profile.RoleId } })
             }, 1000)

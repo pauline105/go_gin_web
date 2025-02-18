@@ -5,6 +5,13 @@ import Home from '../pages/Home';
 import AllNotices from '../pages/allNotices';
 import Layout from "../pages/Layout"
 import EditPofile from '../pages/editPofile';
+import UserManage from '../pages/UserManage';
+
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem("token"); // 檢查是否有 token
+
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
 const routes = [
   {
     path: '/login',
@@ -13,25 +20,24 @@ const routes = [
   {
     path: "/",
     // 默認重定向到 /login
-    element: <Layout />,
+    element: <ProtectedRoute><Layout /></ProtectedRoute>,
     children: [
       {
-        // 默認重定向到 /home
-        index: true, // 這表示當父路由為 / 且未匹配具體子路由時，這個路由會被渲染
-        element: <Navigate to="login" />,
-      },
-      {
-        index: true,
-        path: 'home',
-        element: <Home />,
+        path: 'home', // 默認重定向到 /home
+        index: true,  // 這表示當父路由為 / 且未匹配具體子路由時，這個路由會被渲染
+        element: <ProtectedRoute><Home /></ProtectedRoute>,
       },
       {
         path: 'allNotices',
-        element: <AllNotices />,
+        element: <ProtectedRoute> <AllNotices /></ProtectedRoute>,
       },
       {
         path: 'editPofile',
-        element: <EditPofile />,
+        element: <ProtectedRoute><EditPofile /></ProtectedRoute>,
+      },
+      {
+        path: 'userManage',
+        element: <ProtectedRoute><UserManage /></ProtectedRoute>,
       },
     ]
   }
