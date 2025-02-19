@@ -76,9 +76,9 @@ const Home: React.FC = () => {
           label: "用戶管理",
         },
         {
-          key: "active_projects",
+          key: "emp_Manage",
           icon: React.createElement(FileTextOutlined),
-          label: "進行中的項目",
+          label: "員工管理",
         },
       ]
     },
@@ -137,6 +137,17 @@ const Home: React.FC = () => {
           label: "請假管理",
         },
       ],
+    }, {
+      key: "other",
+      icon: React.createElement(UserOutlined),
+      label: "其他模塊",
+      children: [
+        {
+          key: "photos",
+          icon: React.createElement(UserOutlined),
+          label: "圖片管理",
+        }
+      ]
     },
     {
       key: "profile",
@@ -187,7 +198,7 @@ const Home: React.FC = () => {
             <Menu
               onClick={onClick}
               defaultSelectedKeys={['home']}
-              defaultOpenKeys={['sub1']}
+              defaultOpenKeys={['home']}
               mode="inline"
               items={items}
 

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../request/login/login';
 
 function Login() {
+    document.title = '登錄-川煒堂員工管理後台系統'
     const navigate = useNavigate()
     type FieldType = {
         username: string;

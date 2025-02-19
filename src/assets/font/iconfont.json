@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7422982",
+      "name": "任务消息",
+      "font_class": "ziyuan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "8860632",
+      "name": "list",
+      "font_class": "list",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "10087488",
+      "name": "購物車",
+      "font_class": "gouwuche",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "10936673",
+      "name": "配置",
+      "font_class": "peizhi",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "13202815",
+      "name": "訊息",
+      "font_class": "xunxi",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "28690056",
+      "name": "配置",
+      "font_class": "peizhi1",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "31473216",
+      "name": "圖片",
+      "font_class": "tupian",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "41599918",
+      "name": "promotion",
+      "font_class": "youhuiquan",
+      "unicode": "e74d",
+      "unicode_decimal": 59213
+    },
+    {
       "icon_id": "10027383",
       "name": "待付款",
       "font_class": "daifukuan",

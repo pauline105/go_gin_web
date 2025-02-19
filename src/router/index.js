@@ -6,7 +6,7 @@ import AllNotices from '../pages/allNotices';
 import Layout from "../pages/Layout"
 import EditPofile from '../pages/editPofile';
 import UserManage from '../pages/UserManage';
-
+import Photo from '../pages/other/photos/Photo';
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("token"); // 檢查是否有 token
 
@@ -16,6 +16,11 @@ const routes = [
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: "/",
+    // 默認重定向到 /login
+    element: <Navigate to="/login" />,
   },
   {
     path: "/",
@@ -38,6 +43,10 @@ const routes = [
       {
         path: 'userManage',
         element: <ProtectedRoute><UserManage /></ProtectedRoute>,
+      },
+      {
+        path: 'photos',
+        element: <ProtectedRoute><Photo /></ProtectedRoute>,
       },
     ]
   }

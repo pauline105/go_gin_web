@@ -4,44 +4,70 @@ import '../style/home/index.scss'
 
 import ReactECharts from 'echarts-for-react';
 function Home() {
+  document.title = '川煒堂員工管理後台系統'
   const location = useLocation()
   console.log(location);
   const option = {
     title: {
-      text: '近期繳費記錄',
-      textStyle: {
-        color: '#fff', // 修改標題文字顏色
-        fontSize: "14px",
-      },
-      left: '40px',
+      text: '近期銷量'
     },
     tooltip: {
-      textStyle: {
-        color: '#fff' // 修改提示框文字顏色
-      }
-    },
-    yAxis: {
-      axisLabel: {
-        color: '#fff' // 修改 y 軸標籤文字顏色
-      }
+      trigger: 'axis'
     },
     legend: {
-      data: ['销量'],
-      textStyle: {
-        color: '#fff' // 修改圖例文字顏色
+      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
       }
     },
     xAxis: {
-      data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-      axisLabel: {
-        color: '#fff' // 修改 x 軸標籤文字顏色
-      }
+      type: 'category',
+      boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
-    series: [{
-      name: '销量',
-      type: 'line',
-      data: [5, 20, 36, 10, 10, 20]
-    }]
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: 'Email',
+        type: 'line',
+        stack: 'Total',
+        data: [120, 132, 101, 134, 90, 230, 210]
+      },
+      {
+        name: 'Union Ads',
+        type: 'line',
+        stack: 'Total',
+        data: [220, 182, 191, 234, 290, 330, 310]
+      },
+      {
+        name: 'Video Ads',
+        type: 'line',
+        stack: 'Total',
+        data: [150, 232, 201, 154, 190, 330, 410]
+      },
+      {
+        name: 'Direct',
+        type: 'line',
+        stack: 'Total',
+        data: [320, 332, 301, 334, 390, 330, 320]
+      },
+      {
+        name: 'Search Engine',
+        type: 'line',
+        stack: 'Total',
+        data: [820, 932, 901, 934, 1290, 1330, 1320]
+      }
+    ]
   };
   return (
 
@@ -109,14 +135,38 @@ function Home() {
       </div>
       {/* 導航卡片 */}
       <div className='navigate_card'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <i className='iconfont user1'></i>
+          <span>用戶</span>
+        </div>
+        <div>
+          <i className='iconfont gouwuche'></i>
+          <span>商品</span>
+        </div>
+        <div>
+          <i className='iconfont list-1-copy'></i>
+          <span>訂單</span>
+        </div>
+        <div>
+          <i className='iconfont xunxi'></i>
+          <span>評價</span>
+        </div>
+        <div>
+          <i className='iconfont tupian'></i>
+          <span>圖庫</span>
+        </div>
+        <div>
+          <i className='iconfont ziyuan'></i>
+          <span>公告</span>
+        </div>
+        <div>
+          <i className='iconfont peizhi1'></i>
+          <span>配置</span>
+        </div>
+        <div>
+          <i className='iconfont youhuiquan'></i>
+          <span>優惠券</span>
+        </div>
       </div>
 
       {/* 數據可視化區域 */}

@@ -1,0 +1,61 @@
+.photo_container {
+    background-color: #fff;
+    height: 100%;
+
+    .header {
+        padding: 20px 0 20px 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .sider {
+        display: flex;
+        height: calc(100% - 73px);
+
+        >div:nth-child(1) {
+            width: 240px;
+            height: 100%;
+            border-right: 1px solid #ccc;
+            padding: 10px 20px;
+
+            >div {
+                display: flex;
+                justify-content: space-between;
+
+                >div {
+                    span {
+                        margin: 3px;
+                    }
+                }
+            }
+        }
+
+        >div:nth-child(2) {
+            width: 100%;
+
+            >div:nth-child(1) {
+                padding: 20px 0 20px 20px;
+                display: grid;
+                /* 自動填充列，設置最小列寬 (依需求調整數值) */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                /* 水平均勻分配，左右留空 (space-around 效果) */
+                justify-content: center;
+                /* 行間距 */
+                row-gap: 20px;
+
+                /* 以下為可選補充設定 */
+                width: 100%;
+                /* 確保容器寬度填滿父層 */
+                overflow-y: scroll;
+                height: 80%;
+
+                div {
+                    padding: 20px;
+                    width: 180px;
+                    height: 180px;
+                    border: 1px solid #ccc;
+                }
+
+            }
+        }
+    }
+}
