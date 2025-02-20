@@ -7,6 +7,7 @@ import Layout from "../pages/Layout"
 import EditPofile from '../pages/editPofile';
 import UserManage from '../pages/UserManage';
 import Photo from '../pages/other/photos/Photo';
+import Announcement from '../pages/other/announcement/Announcement';
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("token"); // 檢查是否有 token
 
@@ -48,6 +49,10 @@ const routes = [
         path: 'photos',
         element: <ProtectedRoute><Photo /></ProtectedRoute>,
       },
+      {
+        path: 'announcement',
+        element: <ProtectedRoute><Announcement /></ProtectedRoute>,
+      }
     ]
   }
 ];

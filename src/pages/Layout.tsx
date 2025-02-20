@@ -146,6 +146,11 @@ const Home: React.FC = () => {
           key: "photos",
           icon: React.createElement(UserOutlined),
           label: "圖片管理",
+        },
+        {
+          key: "announcement",
+          icon: React.createElement(UserOutlined),
+          label: "公告管理",
         }
       ]
     },
@@ -212,7 +217,7 @@ const Home: React.FC = () => {
               <span>星期一</span>
               <span>
                 <Dropdown menu={{ items: menuItems }}>
-                  <a onClick={(e) => e.preventDefault()}>
+                  <a >
                     你好,管理員
                   </a>
                 </Dropdown>

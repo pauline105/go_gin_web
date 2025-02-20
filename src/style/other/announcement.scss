@@ -1,0 +1,26 @@
+.announcement_container {
+    background-color: #fff;
+    height: 100%;
+    padding: 30px 30px 10px;
+
+    >div:nth-child(1) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        >span {
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .ant-spin-container {
+        margin-top: 20px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .ant-tag {
+        cursor: pointer;
+    }
+}
