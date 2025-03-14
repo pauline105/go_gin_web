@@ -1,0 +1,117 @@
+.layout_container {
+    height: 100%;
+
+    .ant-layout {
+        height: 100%;
+
+        .ant-layout-sider-children {
+            display: flex;
+            flex-direction: column;
+            background-color: #2F2E52;
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                height: 50px;
+                background-color: #fff;
+                flex-shrink: 0
+            }
+
+            .menu_box {
+                display: 1;
+                overflow: auto;
+                width: 100%;
+                position: relative;
+                background-color: #2F2E52;
+            }
+
+            /* 設置自定義的滾動條樣式 */
+            .menu_box::-webkit-scrollbar {
+                width: 0px;
+                /* 隱藏標準滾動條 */
+            }
+
+            .menu_box::-webkit-scrollbar-thumb {
+                background-color: rgba(153, 8, 8, 0.3);
+                /* 滑塊顏色 */
+                border-radius: 10px;
+            }
+
+            .menu_box::-webkit-scrollbar-track {
+                background-color: transparent;
+                /* 滾動條軌道透明 */
+            }
+
+            /* 設置滾動條浮動顯示在元素右邊 */
+            .menu_box::-webkit-scrollbar {
+                width: 6px;
+                /* 滾動條的寬度 */
+
+            }
+
+
+
+            /* 這裡是自定義滾動條，放置在盒子的右側，並且它會浮動 */
+            .menu_box::-webkit-scrollbar-track {
+                background-color: transparent;
+                /* 滾動條軌道背景透明 */
+            }
+
+            .menu_box::-webkit-scrollbar {
+                position: absolute;
+                right: 0;
+                /* 滾動條在右邊 */
+                top: 0;
+            }
+
+            .ant-menu {
+                background-color: #2F2E52;
+
+                li {
+                    color: #ccc;
+                    width: 100% !important;
+                    margin: 0;
+                    border-radius: 0;
+                }
+            }
+
+            .ant-menu-item {
+                background-color: #2F2E52;
+            }
+
+
+            .ant-menu-item-active {
+                background-color: rgba($color: #000, $alpha: 0.2) !important;
+            }
+        }
+
+
+        .ant-layout-header {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            line-height: 50px;
+            background-color: #2F2E52 !important;
+
+            .ant-btn {
+                width: 30px !important;
+                height: 30px !important;
+
+                .ant-btn-icon {
+                    color: #ccc
+                }
+            }
+
+            .ant-breadcrumb {
+                margin-left: 10px;
+
+                li {
+                    font-size: 12px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

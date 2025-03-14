@@ -1,0 +1,129 @@
+.login_container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: url('../../images/login_bg.png') no-repeat center center;
+    background-size: cover;
+
+    .login_box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 300px;
+        background-color: #fddfdf40;
+        border: 2px solid #fcd6d6;
+        border-radius: 5px;
+        padding: 60px 40px 20px;
+
+        .input_data {
+            position: relative;
+            /* 关键：让 .underline 以 .input_data 作为定位参考 */
+            margin-bottom: 20px;
+
+            /* 适当增加底部间距，避免重叠 */
+            .radius_box {
+                width: 100%;
+                border-radius: 10px;
+                height: 36px;
+                overflow: hidden;
+            }
+
+            input {
+                display: flex;
+                position: relative;
+                outline: 0;
+                border: 0;
+                background-color: #ffd8d86c;
+                color: #fff;
+                height: 36px;
+                width: 100%;
+                font-size: 14px;
+                padding-left: 10px;
+            }
+
+            input:focus~label,
+            input:valid~label {
+                transform: translate(-10px, -40px);
+                font-size: 12px;
+                /* Move label when input is focused */
+            }
+
+            label {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 10px;
+                font-size: 14px;
+                color: #fff;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            }
+
+            .underline {
+                position: absolute;
+                bottom: 0px;
+                left: 6px;
+                /* 让它紧贴 input */
+                width: 96%;
+                border-bottom: 2px solid #9FC7F7;
+                transform: scaleX(0);
+                transition: all 0.5s ease;
+            }
+
+            input:focus~.underline,
+            input:valid~.underline {
+                transform: scaleX(1);
+            }
+
+
+        }
+
+        >.input_data:nth-child(2) {
+            margin-top: 40px;
+        }
+
+
+        .forget_pwd {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+
+            span {
+                font-size: 12px;
+                cursor: pointer;
+                color: #9FC7F7;
+
+            }
+        }
+
+        .back_login {
+            display: flex;
+            justify-content: right;
+            padding-right: 7px;
+
+            span {
+                font-size: 12px;
+                cursor: pointer;
+                color: #9FC7F7;
+                z-index: 99;
+            }
+        }
+
+        .btn_box {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+
+            .ant-btn {
+                width: 60%;
+                background-color: #9FC7F790;
+                font-size: 14px;
+                transition: all 0.5s ease;
+            }
+        }
+
+    }
+}
