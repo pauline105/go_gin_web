@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react'
 import { requestRegister } from '../../request/register'
 import { requestLogin } from '../../request/login'
 import { Button, message } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import '@/style/login/index.scss'
 
 
 function Login() {
+  const navigate = useNavigate()
   // 用戶提示
   const [userTips, setUserTips] = useState('')
   // 密碼提示
   const [pwdTips, setPwdTips] = useState('')
   // 用戶名
-  const [username, setUserame] = useState("")
+  const [username, setUserame] = useState("admin")
   // 密碼
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("admin")
   // 判斷登錄還是註冊
   const [register, setRegister] = useState("login")
   useEffect(() => {
@@ -24,7 +26,6 @@ function Login() {
   // 註冊用戶事件
   const registerHandle = async () => {
     const data = await requestRegister({ "username": username, "password": password })
-    console.log(data);
     if (data.status === 200) {
       message.success("註冊成功,即將自動登錄")
     }
@@ -32,10 +33,11 @@ function Login() {
 
   // 登錄事件
   const loginHandle = async () => {
-    const data = await requestLogin({ "username": username, "password": password })
-    console.log(data);
+    const { data } = await requestLogin({ "username": username, "password": password })
     if (data.status === 200) {
       message.success("登錄成功,即將跳轉首頁")
+      localStorage.setItem("token", data.token)
+      navigate("/")
     }
   }
 

@@ -16,7 +16,7 @@ request.interceptors.request.use(
     // 获取本地存储的 token
     const token = localStorage.getItem("token");
     if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`; // 在请求头中添加 token
+      config.headers["Authorization"] = token; // 在请求头中添加 token
     }
     return config;
   },
@@ -28,10 +28,10 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   (response) => {
+    console.log(response);
+
     // 直接返回 data 数据
-    if (response.status === 200) {
-      return response.data;
-    }
+    return response
   },
   (error) => {
     if (error.response) {

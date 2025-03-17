@@ -1,3 +1,5 @@
+@import url(./assets/font/iconfont.css);
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,9 +29,22 @@ body,
   height: 100vh;
   position: relative;
 }
+
 /* 設定滾動條的寬度或高度 */
 ::-webkit-scrollbar {
-  width: 10px;   /* 垂直滾動條寬度 */
-  height: 10px;  /* 水平滾動條高度 */
+  width: 10px;
+  /* 垂直滾動條寬度 */
+  height: 10px;
+  /* 水平滾動條高度 */
 }
 
+.ant-tooltip-inner {
+  border: 1px solid #ccc !important;
+  background-color: transparent !important;
+  color: #000 !important;
+  font-size: 12px;
+  padding: 2px !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-height: 0 !important;
+}
