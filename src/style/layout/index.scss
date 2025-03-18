@@ -8,6 +8,7 @@
             display: flex;
             justify-content: space-between;
             color: #fff;
+            padding: 0;
 
             >div:nth-child(1) {
                 display: flex;
@@ -15,7 +16,7 @@
             }
 
             >div:nth-child(2) {
-                padding-right: 30px;
+                padding-right: 10px;
                 display: flex;
                 justify-content: end;
                 align-items: center;
@@ -31,19 +32,53 @@
                     transform: scale(1.1, 1.1);
                 }
 
-                div {
-                    width: 30px;
-                    height: 30px;
-                    background-color: #fff;
-                    border-radius: 50%;
-                    margin: 10px;
+                .ant-dropdown-trigger {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 22px;
+                        height: 22px;
+                        margin: 0 5px;
+                        border-radius: 50%;
+                        line-height: 40px;
+                        cursor: pointer;
+
+                    }
+
+                    span {
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+
+                    .anticon {
+                        margin-left: 4px;
+                        vertical-align: -0.1rem;
+                        font-size: 12px;
+                    }
                 }
 
-                span {
-                    cursor: pointer;
-                    font-size: 14px;
-                }
             }
+        }
+
+        .content_box {
+            height: 100%;
+            margin: 0 !important;
+            padding: 15px !important;
+
+            .ant-layout-content {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        }
+
+        .content_box {
+            overflow-y: scroll;
+        }
+
+        .tabs {
+            height: 34px;
+            background-color: #000;
         }
 
         .ant-layout-sider-children {
@@ -62,71 +97,49 @@
             }
 
             .menu_box {
-                display: 1;
-                overflow: auto;
-                width: 100%;
-                position: relative;
+                overflow-y: scroll;
                 background-color: #2F2E52;
+
+                .ant-menu {
+                    background-color: #2F2E52;
+
+                    .ant-menu-submenu-title {
+                        color: #fff;
+                    }
+
+                    li {
+                        color: #fff;
+                        width: 100% !important;
+                        margin: 0;
+                        border-radius: 0;
+                        font-size: 14px;
+
+                        i {
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                .ant-menu-item {
+                    background-color: #2F2E52;
+                }
+
+
+                .ant-menu-item-active,
+                .ant-menu-item-selected {
+                    background-color: #2e2e2e70;
+                    color: #409EFF !important;
+                }
             }
 
             /* 設置自定義的滾動條樣式 */
-            .menu_box::-webkit-scrollbar {
-                width: 0px;
-                /* 隱藏標準滾動條 */
-            }
 
-            .menu_box::-webkit-scrollbar-thumb {
-                background-color: rgba(153, 8, 8, 0.3);
-                /* 滑塊顏色 */
-                border-radius: 10px;
-            }
-
-            .menu_box::-webkit-scrollbar-track {
-                background-color: transparent;
-                /* 滾動條軌道透明 */
-            }
-
-            /* 設置滾動條浮動顯示在元素右邊 */
-            .menu_box::-webkit-scrollbar {
-                width: 6px;
-                /* 滾動條的寬度 */
-
-            }
 
 
 
             /* 這裡是自定義滾動條，放置在盒子的右側，並且它會浮動 */
-            .menu_box::-webkit-scrollbar-track {
-                background-color: transparent;
-                /* 滾動條軌道背景透明 */
-            }
-
-            .menu_box::-webkit-scrollbar {
-                position: absolute;
-                right: 0;
-                /* 滾動條在右邊 */
-                top: 0;
-            }
-
-            .ant-menu {
-                background-color: #2F2E52;
-
-                li {
-                    color: #ccc;
-                    width: 100% !important;
-                    margin: 0;
-                    border-radius: 0;
-                }
-            }
-
-            .ant-menu-item {
-                background-color: #2F2E52;
-            }
 
 
-            .ant-menu-item-active {
-                background-color: rgba($color: #000, $alpha: 0.2) !important;
-            }
         }
 
 
@@ -156,4 +169,30 @@
             }
         }
     }
+}
+
+.header-dropdown {
+    padding: 0 !important;
+
+    .ant-dropdown-menu {
+        padding: 0;
+
+        .ant-dropdown-menu-item {
+            font-weight: 100 !important;
+            font-size: 14px !important;
+            border-radius: 0;
+        }
+
+        >.ant-dropdown-menu-item:nth-child(4) {
+            border-top: 1px solid #ccc;
+            border-radius: 0;
+        }
+
+        .ant-dropdown-menu-item-active {
+            background-color: #eaf5ff !important;
+            color: #40a0ff !important;
+        }
+    }
+
+
 }

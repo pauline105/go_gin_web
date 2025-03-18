@@ -28,8 +28,6 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   (response) => {
-    console.log(response);
-
     // 直接返回 data 数据
     return response
   },

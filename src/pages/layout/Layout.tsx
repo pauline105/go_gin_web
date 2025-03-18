@@ -3,20 +3,21 @@ import '@/style/layout/index.scss'
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    MailOutlined,
-    AppstoreOutlined,
     DownOutlined
 } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 
 import { Button, Layout, Menu, Breadcrumb, Dropdown, Tooltip } from 'antd';
-import type { MenuProps } from 'antd';
+import type { userInfoType } from '../../type/user'
 import { requestUserInfo } from '../../request/layout'
-type MenuItem = Required<MenuProps>['items'][number];
 const { Header, Sider, Content } = Layout;
 
 const LayoutComponent: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
+    // 用戶信息
+    const [userInfo, setUserInfo] = useState<userInfoType>()
+    // 菜單數據
+    const [menu, setMenuData] = useState([])
 
     useEffect(() => {
         document.title = '控制台 - WalAdmin'
@@ -25,42 +26,46 @@ const LayoutComponent: React.FC = () => {
 
     // 獲取用戶信息
     const getUserInfoHandle = async () => {
-        const data = await requestUserInfo()
-        console.log(data);
-
+        const res = await requestUserInfo()
+        setUserInfo(res.data.userInfo)
+        setMenuData(res.data.menu)
     }
 
-    const items: MenuItem[] = [
+    const transformMenuData = (data: any) => {
+        return data.map((item: any) => ({
+            ...item,
+            icon: React.createElement("i", { className: item.icon }),
+            children: item.children ? transformMenuData(item.children) : undefined
+        }));
+    };
+    // 下拉數據
+    const dropDownItems = [
         {
-            key: 'sub1',
-            label: 'Navigation One',
-            icon: <MailOutlined />,
-            children: [
-                { key: '5', label: 'Option 5' },
-                { key: '6', label: 'Option 6' },
-                { key: '7', label: 'Option 7' },
-                { key: '8', label: 'Option 8' },
-            ],
+            key: '1',
+            label: (
+                <span>工作台</span>
+            ),
         },
         {
-            key: 'sub2',
-            label: 'Navigation Two',
-            icon: <AppstoreOutlined />,
-            children: [
-                { key: '9', label: 'Option 9' },
-                { key: '10', label: 'Option 10' },
-                {
-                    key: 'sub3',
-                    label: 'Submenu',
-                    children: [
-                        { key: '11', label: 'Option 11' },
-                        { key: '12', label: 'Option 12' },
-                    ],
-                },
-            ],
+            key: '2',
+            label: (
+                <span>個人中心</span>
+            ),
         },
-    ];
-
+        {
+            key: '3',
+            label: (
+                <span>消息通知</span>
+            ),
+        },
+        {
+            key: '4',
+            label: (
+                <span>退出登錄</span>
+            ),
+        },
+    ]
+    // 
     return (
         <div className='layout_container'>
             <Layout>
@@ -68,10 +73,12 @@ const LayoutComponent: React.FC = () => {
                     <div className='logo'>WalAdmin</div>
                     <div className='menu_box'>
                         <Menu
-                            theme="dark"
-                            mode="inline"
                             defaultSelectedKeys={['1']}
-                            items={items}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                            theme="dark"
+                            inlineCollapsed={collapsed}
+                            items={transformMenuData(menu)}
                         />
                     </div>
                 </Sider>
@@ -107,21 +114,28 @@ const LayoutComponent: React.FC = () => {
                             <Tooltip arrow={false} title="消息通知">
                                 <i className='icon xiaoxi'></i>
                             </Tooltip>
-                            <div className='avatar'></div>
-                            <Dropdown menu={{ items }}>
-                                <span>  管理員<DownOutlined /></span>
+
+                            <Dropdown overlayClassName='header-dropdown' menu={{ items: dropDownItems }}>
+                                <div>
+                                    <img src={userInfo?.avatar} alt="" />
+                                    <span>  {userInfo?.role}<DownOutlined /></span>
+
+                                </div>
                             </Dropdown>
                         </div>
                     </Header>
-                    <Content
-                        style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
-                        }}
-                    >
-                        <Outlet />
-                    </Content>
+                    <div className='tabs'></div>
+                    <div className='content_box'>
+                        <Content
+                            style={{
+                                margin: '24px 16px',
+                                padding: 24,
+                                minHeight: 280,
+                            }}
+                        >
+                            <Outlet />
+                        </Content>
+                    </div>
                 </Layout>
             </Layout>
         </div>
