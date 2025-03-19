@@ -2,6 +2,7 @@
 import Login from "../pages/login/Login"
 import Layout from "../pages/layout/Layout";
 import Home from '@/pages/home/Home.tsx'
+import TabsContainer from '@/pages/TabsContainer'
 const routes = [
     {
         path: '/login',

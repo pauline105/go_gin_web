@@ -1,5 +1,4 @@
-@import url(./assets/font/iconfont.css);
-
+@import url("./assets/font/iconfont.css");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,7 +22,7 @@ body,
 }
 
 ::-webkit-scrollbar {
-  width: 6px!important;
+  width: 6px !important;
   /* 這裡決定滾動條的寬度 */
 }
 
@@ -59,4 +58,12 @@ body,
   box-shadow: none !important;
   border-radius: 0 !important;
   min-height: 0 !important;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }

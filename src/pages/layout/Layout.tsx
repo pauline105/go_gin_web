@@ -5,7 +5,7 @@ import {
     MenuUnfoldOutlined,
     DownOutlined
 } from '@ant-design/icons';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { Button, Layout, Menu, Breadcrumb, Dropdown, Tooltip } from 'antd';
 import type { userInfoType } from '../../type/user'
@@ -18,7 +18,7 @@ const LayoutComponent: React.FC = () => {
     const [userInfo, setUserInfo] = useState<userInfoType>()
     // 菜單數據
     const [menu, setMenuData] = useState([])
-
+    const navigate = useNavigate()
     useEffect(() => {
         document.title = '控制台 - WalAdmin'
         getUserInfoHandle()
@@ -31,6 +31,13 @@ const LayoutComponent: React.FC = () => {
         setMenuData(res.data.menu)
     }
 
+    // 退出登錄
+    const loginOut = () => {
+        localStorage.clear()
+        navigate('login')
+    }
+
+    // 處理菜單數據
     const transformMenuData = (data: any) => {
         return data.map((item: any) => ({
             ...item,
@@ -61,7 +68,7 @@ const LayoutComponent: React.FC = () => {
         {
             key: '4',
             label: (
-                <span>退出登錄</span>
+                <span onClick={loginOut}>退出登錄</span>
             ),
         },
     ]
@@ -119,7 +126,6 @@ const LayoutComponent: React.FC = () => {
                                 <div>
                                     <img src={userInfo?.avatar} alt="" />
                                     <span>  {userInfo?.role}<DownOutlined /></span>
-
                                 </div>
                             </Dropdown>
                         </div>

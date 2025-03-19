@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "42905926",
+      "name": "哈士奇",
+      "font_class": "hashiqi",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "42905932",
+      "name": "奶牛猫",
+      "font_class": "nainiumao",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "43415566",
+      "name": "三花猫",
+      "font_class": "sanhuamao",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "43415613",
+      "name": "黑猫",
+      "font_class": "heimao",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
       "icon_id": "740931",
       "name": "search",
       "font_class": "search",
