@@ -3,9 +3,10 @@ export const subsidy_option = {
   color: ['#F5CBFA', '#FAC9D6',],
   title: {
     text: '政府補貼政策',
+    top: "0",
     textStyle: {
       fontSize: "14px",
-      fontWeight: 'normal',
+      fontWeight: 'bold',
     }
   },
   tooltip: {
@@ -15,11 +16,16 @@ export const subsidy_option = {
       label: {
         backgroundColor: '#6a7985'
       }
-    }
+    },
+    textStyle: {
+      fontSize: 12, // 字體大小
+      color: '#333', // 文字顏色
+      fontFamily: 'Arial' // 字體類型
+    },
   },
   legend: {
     data: ['預購隊列', '成交數量',],
-    left:"right",
+    left: "right",
   },
   toolbox: {
     feature: {
@@ -63,15 +69,17 @@ export const subsidy_option = {
       type: 'line',
       smooth: true,
       lineStyle: {
-        width: 0
+        width: 2,
+        color: "rgb(216, 132, 255)"
       },
-      showSymbol: false,
+      showSymbol: true,
+      symbol:'circle',
       areaStyle: {
         opacity: 0.8,
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgba(224, 175, 247, 0.87)'
+            color: 'rgba(216, 132, 255, 0.87)'
           },
           {
             offset: 1,
@@ -90,9 +98,11 @@ export const subsidy_option = {
       stack: 'Total',
       smooth: true,
       lineStyle: {
-        width: 0
+        width: 2,
+        color: "rgb(255, 171, 158)"
       },
-      showSymbol: false,
+      showSymbol: true,
+      symbol:'circle',
       areaStyle: {
         opacity: 0.8,
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -113,3 +123,64 @@ export const subsidy_option = {
     },
   ]
 };
+
+export const unit_option = {
+  title: {
+    text: '房屋建築工程', // 主標題
+    left: 'left', // 標題居中，可設 'left'、'right'、'center'
+    top: '0%', // 距離上方的距離
+    textStyle: {
+      fontSize: 14, // 字體大小
+      fontWeight: 'bold' // 字體加粗
+    },
+    subtextStyle: {
+      fontSize: 12, // 副標題字體大小
+      color: '#666' // 副標題顏色
+    }
+  },
+  tooltip: {
+    trigger: 'item',
+    position: function (point) {
+      return [point[0] + 10, point[1] + 10];
+    },
+    textStyle: {
+      fontSize: 12, // 字體大小
+      color: '#333', // 文字顏色
+      fontFamily: 'Arial' // 字體類型
+    },
+  },
+  legend: {
+    top: 'center',
+    right: '5%',
+    orient: 'vertical'
+  },
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: ['40%', '70%'],
+      center: ['40%', '50%'], // 圓環左移
+      avoidLabelOverlap: false,
+ 
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: false
+        }
+      },
+      labelLine: {
+        show: false
+      },
+      data: [
+        { value: 1048, name: '房屋及結構物' },
+        { value: 735, name: '專用設備' },
+        { value: 580, name: '通用設備' },
+        { value: 484, name: '文物和陳列物' },
+        { value: 300, name: '圖書、檔案' }
+      ]
+    }
+  ]
+}

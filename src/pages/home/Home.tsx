@@ -1,17 +1,57 @@
-import React, { useEffect } from "react";
-import * as echarts from 'echarts';
-import '../../style/home/index.scss'
-import { subsidy_option } from '../../data/echarts/index.js'
+import React, { useEffect, useRef } from "react";
+import * as echarts from "echarts";
+import "../../style/home/index.scss";
+import { subsidy_option, unit_option } from "../../data/echarts/index.js";
 
-function Home() {
+function Home(): JSX.Element {
+  const subsidyRef = useRef<HTMLDivElement | null>(null);
+  const unitRef = useRef<HTMLDivElement | null>(null);
+  const subsidyChart = useRef<echarts.ECharts | null>(null);
+  const unitChart = useRef<echarts.ECharts | null>(null);
+  const prevSubsidySize = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+  const prevUnitSize = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+  const resizeTimeout = useRef<any>(null);
+
   useEffect(() => {
-    // 获取 DOM 元素
-    var chartDom = document.getElementById('echarts_subsidy');
-    var myChart = echarts.init(chartDom);
+    if (subsidyRef.current && unitRef.current) {
+      subsidyChart.current = echarts.init(subsidyRef.current);
+      unitChart.current = echarts.init(unitRef.current);
 
-    // 设置图表配置项
-    myChart.setOption(subsidy_option);
-  }); // 空依赖数组，确保只在组件挂载时执行一次
+      subsidyChart.current.setOption(subsidy_option);
+      unitChart.current.setOption(unit_option);
+
+      const observer = new ResizeObserver(() => {
+        if (resizeTimeout.current) {
+          cancelAnimationFrame(resizeTimeout.current);
+        }
+
+        resizeTimeout.current = requestAnimationFrame(() => {
+          const subsidySize = subsidyRef.current?.getBoundingClientRect();
+          const unitSize = unitRef.current?.getBoundingClientRect();
+
+          // 只有當尺寸變化時，才會進行重繪
+          if (subsidySize && (subsidySize.width !== prevSubsidySize.current.width || subsidySize.height !== prevSubsidySize.current.height)) {
+            subsidyChart.current?.resize();
+            prevSubsidySize.current = { width: subsidySize.width, height: subsidySize.height };
+          }
+
+          if (unitSize && (unitSize.width !== prevUnitSize.current.width || unitSize.height !== prevUnitSize.current.height)) {
+            unitChart.current?.resize();
+            prevUnitSize.current = { width: unitSize.width, height: unitSize.height };
+          }
+        });
+      });
+
+      observer.observe(subsidyRef.current);
+      observer.observe(unitRef.current);
+
+      return () => {
+        observer.disconnect();
+        subsidyChart.current?.dispose();
+        unitChart.current?.dispose();
+      };
+    }
+  }, []);
 
   return (
     <div className="home_container">
@@ -57,10 +97,17 @@ function Home() {
           <div>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#hashiqi"></use>
-            </svg></div>
+            </svg>
+          </div>
         </div>
       </div>
-      <div id="echarts_subsidy" ></div>
+      <div className="charts-container">
+        <div ref={subsidyRef} className="chart echarts_subsidy"></div>
+        <div ref={unitRef} className="chart echarts_unit "></div>
+      </div>
+      <div className="tool_box">
+      
+      </div>
     </div>
   );
 }
