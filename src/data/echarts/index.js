@@ -42,7 +42,10 @@ export const subsidy_option = {
     {
       type: 'category',
       boundaryGap: false,
-      data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+      data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      axisTick: {
+        show: false // 不显示坐标轴刻度线
+      },
     }
   ],
   yAxis: [
@@ -73,7 +76,7 @@ export const subsidy_option = {
         color: "rgb(216, 132, 255)"
       },
       showSymbol: true,
-      symbol:'circle',
+      symbol: 'circle',
       areaStyle: {
         opacity: 0.8,
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -102,7 +105,7 @@ export const subsidy_option = {
         color: "rgb(255, 171, 158)"
       },
       showSymbol: true,
-      symbol:'circle',
+      symbol: 'circle',
       areaStyle: {
         opacity: 0.8,
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -125,6 +128,7 @@ export const subsidy_option = {
 };
 
 export const unit_option = {
+
   title: {
     text: '房屋建築工程', // 主標題
     left: 'left', // 標題居中，可設 'left'、'right'、'center'
@@ -156,12 +160,23 @@ export const unit_option = {
   },
   series: [
     {
+      type: 'pie',
+      radius: ['55%', '75%'], // 背景圓（比主圓環稍大）
+      center: ['46%', '50%'],
+      silent: true, // 禁止交互
+      itemStyle: {
+        color: 'rgba(0, 0, 0, 0.05)' // 背景陰影顏色
+      },
+      data: [{ value: 1 }], // 只需要一個值來畫圓
+      animation: false // 禁用動畫，避免影響主圖
+    },
+    {
       name: 'Access From',
       type: 'pie',
-      radius: ['40%', '70%'],
-      center: ['40%', '50%'], // 圓環左移
+      radius: ['60%', '70%'],
+      center: ['35%', '50%'], // 圓環左移
       avoidLabelOverlap: false,
- 
+
       label: {
         show: false,
         position: 'center'
@@ -184,3 +199,112 @@ export const unit_option = {
     }
   ]
 }
+
+
+export const geothermy_option = {
+  title: {
+    text: '地熱開發利用',
+    left: 'left',
+    top: '0',
+    textStyle: {
+      fontSize: 14
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  tooltip: {
+    trigger: 'axis',
+    textStyle: {
+      fontSize: 12, // 字體大小
+      color: '#000', // 字體顏色
+      fontWeight:'normal',
+      fontFamily: 'Arial' // 字體類型
+    },
+
+  },
+  legend: {
+    data: ['供溫', '回溫', '壓力值(Mpa)'],
+    right: 20
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['1km', '2km', '3km', '4km', '5km', '6km'],
+      axisTick: {
+        show: false // 不显示坐标轴刻度线
+      },
+      splitLine: {
+        show: false // 不显示网格线
+      },
+    },
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '井回溫度(℃)',
+      position: 'left',
+      min: 0,
+      max: 80,
+    },
+    {
+      type: 'value',
+      name: '壓力值(Mpa)',
+      position: 'right',
+      min: 0,
+      max: 70,
+      splitLine: {
+        show: false, // 顯示右側的分隔線
+      }
+    }
+  ],
+  series: [
+    {
+      name: '供溫',
+      type: 'line',
+      data: [2, 4, 6, 5, 7, 6],
+      itemStyle: { color: 'orange' },
+      symbol: 'triangle', // 三角形標記點
+      symbolSize: 10,
+      lineStyle: { width: 2 },
+      smooth: true,
+      
+    },
+    {
+      name: '回溫',
+      type: 'line',
+      data: [31, 36, 54, 24, 73, 22],
+      itemStyle: { color: '#3BBC86' },
+      symbol: 'circle', // 圓形標記點
+      smooth: true,
+      symbolSize: 8,
+      lineStyle: { width: 2 },
+      areaStyle: {
+        opacity: 0.8,
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: 'rgb(211, 252, 252)'
+          },
+          {
+            offset: 1,
+            color: 'rgba(186, 233, 217, 0)'
+          }
+        ])
+      },
+    },
+    {
+      name: '壓力值(Mpa)',
+      type: 'bar',
+      data: [11, 34, 54, 39, 63, 24],
+      itemStyle: {
+        color: 'rgba(134, 93, 214, 0.53)', // 半透明紫色
+        barBorderRadius: [20, 20, 0, 0] // 设置圆角
+      },
+      barWidth: 30,
+    }
+  ]
+};

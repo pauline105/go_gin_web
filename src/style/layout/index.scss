@@ -62,18 +62,15 @@
         }
 
         .content_box {
-            height: 100%;
             margin: 0 !important;
             padding: 15px !important;
+            background-color: #F4F4F4;
+            overflow: overlay;
 
             .ant-layout-content {
                 padding: 0 !important;
                 margin: 0 !important;
             }
-        }
-
-        .content_box {
-            background-color: #F4F4F4;
         }
 
         .tabs {
@@ -100,6 +97,7 @@
             .menu_box {
 
                 background-color: #2F2E52;
+                overflow: overlay;
 
                 .ant-menu {
                     background-color: #2F2E52;

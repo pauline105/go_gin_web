@@ -1,4 +1,6 @@
 .home_container {
+    height: 100%;
+
     .info_box {
         display: flex;
         justify-content: space-between;
@@ -104,6 +106,7 @@
 
         .echarts_unit {
             flex: 1;
+            min-width: 0;
             background-color: #fff;
             margin-left: 10px;
             padding: 10px;
@@ -115,7 +118,74 @@
     }
 
     .tool_box {
+        display: flex;
+        height: 400px;
         margin-top: 15px;
-        height: 360px;
+
+        .Navigation_box {
+            width: 520px;
+            padding: 15px;
+            background-color: #fff;
+
+            >div:nth-child(1) {
+                font-weight: bold;
+            }
+
+            >div:nth-child(2) {
+                margin-top: 5px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
+
+                >div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px;
+                    width: 115px;
+                    height: 110px;
+                    background-color: #F1F5FF;
+                    border-radius: 5px;
+
+                    .icon {
+                        margin-right: 5px;
+                        font-size: 18px;
+                    }
+
+                    span {
+                        cursor: pointer;
+                    }
+
+                    >span:nth-child(1) {
+                        font-size: 14px;
+                    }
+
+                    >span:nth-child(2) {
+                        font-size: 14px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .geothermy {
+            flex: 1;
+            background-color: #fff;
+            margin-left: 10px;
+
+            .geothermy_box {
+                padding: 12px;
+                height: 100%;
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+            }
+        }
     }
 }

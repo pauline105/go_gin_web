@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "8281406",
+      "name": "peony",
+      "font_class": "peony",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "27246021",
+      "name": "cherryblossom",
+      "font_class": "cherryblossom",
+      "unicode": "e8d7",
+      "unicode_decimal": 59607
+    },
+    {
+      "icon_id": "30128418",
+      "name": "花朵",
+      "font_class": "weibiaoti-1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "42905926",
       "name": "哈士奇",
       "font_class": "hashiqi",
