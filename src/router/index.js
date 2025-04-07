@@ -3,7 +3,8 @@ import { Navigate } from "react-router-dom";
 import Login from "../pages/login/Login"
 import Layout from "../pages/layout/Layout";
 import Home from '@/pages/home/Home.tsx'
-import User from "../pages/auth/user/User.jsx";
+import User from "@/pages/auth/user/User.jsx";
+import Role from "@/pages/auth/role/Role";
 import TabsContainer from '@/pages/TabsContainer'
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token"); // 或者從 Redux、Context 取得
@@ -34,6 +35,13 @@ const routes = [
                 element:
                     <ProtectedRoute>
                         <User />
+                    </ProtectedRoute>
+            },
+            {
+                path: '/auth/role',
+                element:
+                    <ProtectedRoute>
+                        <Role />
                     </ProtectedRoute>
             },
         ]

@@ -1,0 +1,53 @@
+.role_container {
+  display: flex;
+  > div:nth-child(1),
+  > div:nth-child(2) {
+    background-color: #fff;
+    width: 50%;
+    margin: 0 4px 14px 0;
+    > div:nth-child(1) {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      .ant-input,
+      .ant-btn {
+        height: 32px;
+      }
+      .ant-btn {
+        margin: 10px;
+      }
+      .ant-input {
+        width: 180px;
+      }
+      > span {
+        white-space: nowrap;
+        margin: 0 10px;
+        font-size: 16px;
+      }
+    }
+  }
+  > div:nth-child(2) {
+    margin-left: 4px;
+  }
+}
+.add-dropdown {
+  padding: 0 !important;
+  .ant-dropdown-menu {
+    padding: 0;
+    .ant-dropdown-menu-item {
+      font-weight: 100 !important;
+      font-size: 14px !important;
+      border-radius: 0;
+    }
+
+    > .ant-dropdown-menu-item:nth-child(4) {
+      border-top: 1px solid #ccc;
+      border-radius: 0;
+    }
+
+    .ant-dropdown-menu-item-active {
+      background-color: #eaf5ff !important;
+      color: #40a0ff !important;
+    }
+  }
+}
