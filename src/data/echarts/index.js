@@ -171,7 +171,7 @@ export const unit_option = {
       animation: false // 禁用動畫，避免影響主圖
     },
     {
-      name: 'Access From',
+      name: '房屋建築工程',
       type: 'pie',
       radius: ['60%', '70%'],
       center: ['35%', '50%'], // 圓環左移
@@ -245,7 +245,7 @@ export const geothermy_option = {
   yAxis: [
     {
       type: 'value',
-      name: '井回溫度(℃)',
+      name: '供回溫度(℃)',
       position: 'left',
       min: 0,
       max: 80,

@@ -37,7 +37,9 @@ function Login() {
     if (data.status === 200) {
       message.success("登錄成功,即將跳轉首頁")
       localStorage.setItem("token", data.token)
-      navigate("/")
+      setTimeout(() => {
+        navigate("/workbench")
+      }, 500);
     }
   }
 

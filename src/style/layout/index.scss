@@ -21,15 +21,18 @@
                 justify-content: end;
                 align-items: center;
 
-                i {
+                .icon {
+                    margin: 0 10px;
                     cursor: pointer;
-                    transform: scale(1, 1);
-                    transition: all 1s ease;
-                    margin: 10px;
+                    transition: all 0.5s ease;
                 }
 
-                i:hover {
-                    transform: scale(1.1, 1.1);
+                >.icon:nth-child(2) {
+                    font-size: 18px;
+                }
+
+                .icon:hover {
+                    transform: scale(1.2);
                 }
 
                 .ant-dropdown-trigger {
@@ -62,12 +65,14 @@
         }
 
         .content_box {
+            height: 100%;
             margin: 0 !important;
             padding: 15px !important;
             background-color: #F4F4F4;
             overflow: overlay;
 
             .ant-layout-content {
+                height: 100%;
                 padding: 0 !important;
                 margin: 0 !important;
             }
@@ -130,15 +135,6 @@
                     color: #409EFF !important;
                 }
             }
-
-            /* 設置自定義的滾動條樣式 */
-
-
-
-
-            /* 這裡是自定義滾動條，放置在盒子的右側，並且它會浮動 */
-
-
         }
 
 
