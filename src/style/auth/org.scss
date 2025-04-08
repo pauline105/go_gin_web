@@ -1,0 +1,39 @@
+@import '../_variables.scss';
+
+.org_container {
+    height: 100%;
+
+    >div:nth-child(1) {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-bottom: 8px;
+
+        >span {
+            white-space: nowrap;
+            margin: 0 10px;
+        }
+
+        .ant-input {
+            width: 180px;
+            height: 32px;
+        }
+
+        .ant-btn {
+            width: 80px;
+            height: 32px;
+            margin: 0 10px;
+        }
+    }
+
+    >div:nth-child(2) {
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        background-color: #fff;
+        height: calc(100% - 68px);
+        padding: 10px;
+    }
+}

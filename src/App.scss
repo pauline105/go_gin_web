@@ -1,5 +1,5 @@
 @import url("./assets/font/iconfont.css");
-
+@import './style/_variables.scss';
 * {
   box-sizing: border-box;
   margin: 0;
@@ -61,6 +61,7 @@ body,
   border-radius: 0 !important;
   min-height: 0 !important;
 }
+
 .ant-select-dropdown .ant-select-item {
   color: #333;
   font-size: 14px;
@@ -77,8 +78,9 @@ body,
 .ant-select-dropdown .ant-select-item-option-selected {
   background-color: #e6f7ff;
   color: #1890ff;
-  font-weight: normal!important;
+  font-weight: normal !important;
 }
+
 .ant-select-dropdown .ant-select-item {
   color: #333;
   font-size: 14px;
@@ -94,8 +96,8 @@ body,
 /* 选中项样式 */
 .ant-select-dropdown .ant-select-item-option-selected {
   background-color: #e6f7ff;
-  color: #59abfc!important;
-  font-weight: normal!important;
+  color: #59abfc !important;
+  font-weight: normal !important;
 }
 
 .icon {

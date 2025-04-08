@@ -1,3 +1,5 @@
+@import '../variables';
+
 .home_container {
   height: 100%;
 
@@ -6,7 +8,7 @@
     justify-content: space-between;
     height: 130px;
 
-    > div {
+    >div {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -14,16 +16,17 @@
       width: 25%;
       margin-right: 10px;
       background-color: #fff;
+      border: 1px solid $border-color;
 
       &:hover {
         box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
       }
 
-      > div {
+      >div {
         display: flex;
         flex-direction: column;
 
-        > span:nth-child(1) {
+        >span:nth-child(1) {
           font-size: 24px;
           font-weight: 700;
 
@@ -43,13 +46,13 @@
           }
         }
 
-        > span:nth-child(2) {
+        >span:nth-child(2) {
           margin-top: 10px;
           font-size: 14px;
         }
       }
 
-      > div:nth-child(2) {
+      >div:nth-child(2) {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -64,27 +67,28 @@
       }
     }
 
-    > div:nth-child(2) {
-      > div:nth-child(2) {
+    >div:nth-child(2) {
+      >div:nth-child(2) {
         background-color: #6a5acd;
       }
     }
 
-    > div:nth-child(3) {
-      > div:nth-child(2) {
+    >div:nth-child(3) {
+      >div:nth-child(2) {
         background-color: #f8e1a6;
       }
     }
 
-    > div:nth-child(4) {
+    >div:nth-child(4) {
       margin-right: 0;
-      > div:nth-child(2) {
+
+      >div:nth-child(2) {
         background-color: #a7d8f0;
       }
     }
   }
 
-  > div:nth-child(2) {
+  >div:nth-child(2) {
     margin-top: 15px;
     display: flex;
     height: 360px;
@@ -93,6 +97,7 @@
       width: 60%;
       background-color: #fff;
       padding: 10px;
+      border: 1px solid $border-color;
 
       &:hover {
         box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
@@ -105,6 +110,7 @@
       background-color: #fff;
       margin-left: 10px;
       padding: 10px;
+      border: 1px solid $border-color;
 
       &:hover {
         box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
@@ -121,18 +127,19 @@
       width: 520px;
       padding: 15px;
       background-color: #fff;
+      border: 1px solid $border-color;
 
-      > div:nth-child(1) {
+      >div:nth-child(1) {
         font-weight: bold;
       }
 
-      > div:nth-child(2) {
+      >div:nth-child(2) {
         margin-top: 5px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 5px;
 
-        > div {
+        >div {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -152,11 +159,11 @@
             cursor: pointer;
           }
 
-          > span:nth-child(1) {
+          >span:nth-child(1) {
             font-size: 14px;
           }
 
-          > span:nth-child(2) {
+          >span:nth-child(2) {
             font-size: 14px;
             margin-top: 5px;
           }
@@ -172,6 +179,7 @@
       width: 100%;
       background-color: #fff;
       margin-left: 10px;
+      border: 1px solid $border-color;
 
       .geothermy_box {
         padding: 12px;

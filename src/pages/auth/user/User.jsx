@@ -24,6 +24,39 @@ function User() {
       label: '用戶名',
     },
   ]
+  const treeData = [
+    {
+      "title": "根节点1",
+      "key": "0-0",
+      "children": [
+        {
+          "title": "子节点1-1",
+          "key": "0-0-0"
+        },
+        {
+          "title": "子节点1-2",
+          "key": "0-0-1",
+          "children": [
+            {
+              "title": "子节点1-2-1",
+              "key": "0-0-1-0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "根节点2",
+      "key": "0-1",
+      "children": [
+        {
+          "title": "子节点2-1",
+          "key": "0-1-0"
+        }
+      ]
+    }
+  ]
+
   const columns = [
     {
       title: 'Name',
@@ -86,12 +119,12 @@ function User() {
               // onChange={onChange}
               />
             </div>
-            {/* <Tree
-              onExpand={onExpand}
-              expandedKeys={expandedKeys}
-              autoExpandParent={autoExpandParent}
+            <Tree
+              // onExpand={onExpand}
+              // expandedKeys={expandedKeys}
+              // autoExpandParent={autoExpandParent}
               treeData={treeData}
-            /> */}
+            />
           </div>
         </div>
         <div>

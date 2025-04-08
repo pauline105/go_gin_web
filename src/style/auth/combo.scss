@@ -1,0 +1,59 @@
+@import '../_variables.scss';
+
+.combo_container {
+    height: 100%;
+
+    >div:nth-child(1) {
+        display: flex;
+
+        >div:nth-child(1),
+        >div:nth-child(2) {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            width: 50%;
+            height: 60px;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+
+            >span {
+                margin: 10px;
+            }
+
+            .ant-input {
+                width: 180px;
+                height: 32px;
+                margin: 10px;
+            }
+
+            .ant-btn {
+                height: 32px;
+                margin-right: 10px;
+            }
+        }
+
+        >div:nth-child(1) {
+            margin-right: 6px;
+        }
+    }
+
+    >div:nth-child(2) {
+        display: flex;
+        margin-top: 8px;
+        height: calc(100% - 60px);
+
+
+        >div:nth-child(1),
+        >div:nth-child(2) {
+            height: 100%;
+            background-color: #fff;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            width: 50%;
+        }
+
+        >div:nth-child(1) {
+            margin-right: 10px;
+        }
+    }
+}

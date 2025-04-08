@@ -1,5 +1,5 @@
 // src/App.jsx
-import './App.css';
+import './App.scss';
 import routes from './router'; // 導入路由配置
 import { useRoutes } from 'react-router-dom';
 import './assets/font/iconfont'
