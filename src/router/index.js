@@ -1,5 +1,4 @@
-// import { Navigate } from "react-router-dom"
-import { Navigate } from "react-router-dom";
+import { ProtectedRoute } from './routerMiddleware/index'
 import Login from "../pages/login/Login"
 import Layout from "../pages/layout/Layout";
 import Home from '@/pages/home/Home.tsx'
@@ -8,12 +7,7 @@ import Role from "@/pages/auth/role/Role";
 import Department from "@/pages/auth/org/Department";
 import Combo from "@/pages/auth/combo/Combo";
 import Tenant from "@/pages/auth/tenant/Tenant";
-// import TabsContainer from '@/pages/TabsContainer'
-const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem("token"); // 或者從 Redux、Context 取得
 
-    return token ? children : <Navigate to="/login" replace />;
-};
 const routes = [
     {
         path: '/login',

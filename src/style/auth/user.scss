@@ -41,6 +41,10 @@
         background-color: transparent;
       }
 
+      .ant-tree-treenode-selected:hover {
+        background-color: #e6f4ff !important;
+      }
+
       .ant-tree-treenode {
         width: 100%;
 
@@ -50,11 +54,14 @@
           background-color: rgba($color: #000, $alpha: 0.03);
         }
 
-        .ant-tree-node-content-wrapper,
-        .ant-tree-switcher::before {
-          &:hover {
-            background-color: transparent;
-          }
+        .ant-tree-node-content-wrapper:hover {
+          background-color: transparent !important;
+        }
+
+        .ant-tree-switcher::before,
+        .ant-tree-switcher_close::before,
+        .ant-tree-switcher_open::before {
+          background-color: transparent !important;
         }
       }
     }

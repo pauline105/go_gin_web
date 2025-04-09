@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
 import { Input, Tree, Select, Button, Table } from 'antd';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
+import { requestOrg } from "@/request/user";
 
 function User() {
   const [selectionType, setSelectionType] = useState('checkbox');
+  const [treeData, settreeData] = useState([]);
+
+  useEffect(() => {
+    getOrgList()
+  }, []);
+
+  // 獲取部門數據
+  const getOrgList = async () => {
+    try {
+      const { data } = await requestOrg()
+      console.log(data.org_list);
+      settreeData(data.org_list)
+    } catch (e) {
+      console.log(e);
+      return
+    }
+  }
+
   const select_option = [
     {
       value: '姓名',
@@ -23,38 +42,6 @@ function User() {
       value: '用戶名',
       label: '用戶名',
     },
-  ]
-  const treeData = [
-    {
-      "title": "根节点1",
-      "key": "0-0",
-      "children": [
-        {
-          "title": "子节点1-1",
-          "key": "0-0-0"
-        },
-        {
-          "title": "子节点1-2",
-          "key": "0-0-1",
-          "children": [
-            {
-              "title": "子节点1-2-1",
-              "key": "0-0-1-0"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "根节点2",
-      "key": "0-1",
-      "children": [
-        {
-          "title": "子节点2-1",
-          "key": "0-1-0"
-        }
-      ]
-    }
   ]
 
   const columns = [
@@ -108,6 +95,12 @@ function User() {
       name: record.name,
     }),
   };
+  const onSelect = (keys, info) => {
+    console.log('Trigger Select', keys, info);
+  };
+  const onExpand = (keys, info) => {
+    console.log('Trigger Expand', keys, info);
+  };
   return (
     <div className="user_container">
       <SplitPane split="vertical" minSize={50} defaultSize={1200} primary="second">
@@ -119,12 +112,14 @@ function User() {
               // onChange={onChange}
               />
             </div>
-            <Tree
-              // onExpand={onExpand}
-              // expandedKeys={expandedKeys}
-              // autoExpandParent={autoExpandParent}
+            {treeData.length != 0 && <Tree
+              defaultExpandAll
+              blockNode
+              onSelect={onSelect}
+              onExpand={onExpand}
               treeData={treeData}
-            />
+              expandAction="click"
+            />}
           </div>
         </div>
         <div>
@@ -137,7 +132,7 @@ function User() {
             <Button icon={<PlusOutlined />} type="primary">新增</Button>
             <Button disabled type="primary">部門轉移</Button>
             <div>
-              <Table
+              {treeData && <Table
                 rowSelection={{
                   type: selectionType,
                   ...rowSelection,
@@ -145,7 +140,7 @@ function User() {
                 columns={columns}
                 dataSource={data}
                 bordered
-              />
+              />}
             </div>
           </div>
         </div>

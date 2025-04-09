@@ -302,7 +302,7 @@ export const geothermy_option = {
       data: [11, 34, 54, 39, 63, 24],
       itemStyle: {
         color: 'rgba(134, 93, 214, 0.53)', // 半透明紫色
-        barBorderRadius: [20, 20, 0, 0] // 设置圆角
+        borderRadius: [20, 20, 0, 0] // 设置圆角
       },
       barWidth: 30,
     }

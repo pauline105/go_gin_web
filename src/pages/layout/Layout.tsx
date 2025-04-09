@@ -26,9 +26,14 @@ const LayoutComponent: React.FC = () => {
 
   // 獲取用戶信息
   const getUserInfoHandle = async () => {
-    const res = await requestUserInfo()
-    setUserInfo(res.data.userInfo)
-    setMenuData(res.data.menu)
+    try {
+      const res = await requestUserInfo()
+      setUserInfo(res.data.userInfo)
+      setMenuData(res.data.menu)
+    } catch (error) {
+      console.log(error);
+      return
+    }
   }
 
   // 退出登錄
@@ -43,12 +48,6 @@ const LayoutComponent: React.FC = () => {
     console.log(path);
     navigate(path)
   }
-
-  useEffect(() => {
-    console.log(menu);
-
-  }, [menu]);
-
 
   // 處理菜單數據
   const transformMenuData = (data: any) => {
