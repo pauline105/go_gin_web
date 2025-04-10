@@ -25,21 +25,31 @@ function Login() {
 
   // 註冊用戶事件
   const registerHandle = async () => {
-    const data = await requestRegister({ "username": username, "password": password })
-    if (data.status === 200) {
-      message.success("註冊成功,即將自動登錄")
+    try {
+      const data = await requestRegister({ "username": username, "password": password })
+      if (data.status === 200) {
+        message.success("註冊成功,即將自動登錄")
+      }
+    } catch (error) {
+      console.log(error);
+
     }
+
   }
 
   // 登錄事件
   const loginHandle = async () => {
-    const { data } = await requestLogin({ "username": username, "password": password })
-    if (data.status === 200) {
-      message.success("登錄成功,即將跳轉首頁")
-      localStorage.setItem("token", data.token)
-      setTimeout(() => {
-        navigate("/workbench")
-      }, 500);
+    try {
+      const { data } = await requestLogin({ "username": username, "password": password })
+      if (data.status === 200) {
+        message.success("登錄成功,即將跳轉首頁")
+        localStorage.setItem("token", data.token)
+        setTimeout(() => {
+          navigate("/workbench")
+        }, 500);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 

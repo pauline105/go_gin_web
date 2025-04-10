@@ -91,7 +91,7 @@ const LayoutComponent: React.FC = () => {
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className='logo'>WalAdmin</div>
           <div className='menu_box'>
-            <Menu
+            {menu && menu.length !== 0 && <Menu
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               mode="inline"
@@ -99,7 +99,7 @@ const LayoutComponent: React.FC = () => {
               inlineCollapsed={collapsed}
               items={transformMenuData(menu)}
               onClick={(item) => menuClickHandle(item)}
-            />
+            />}
           </div>
         </Sider>
         <Layout>

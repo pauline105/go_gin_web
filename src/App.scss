@@ -1,5 +1,6 @@
 @import url("./assets/font/iconfont.css");
 @import './style/_variables.scss';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -49,7 +50,6 @@ body,
   height: 10px;
   /* 水平滾動條高度 */
 }
-
 
 .ant-tooltip-inner {
   border: 1px solid #000 !important;

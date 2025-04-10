@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
-import { Input, Tree, Select, Button, Table } from 'antd';
+import { Input, Tree, Select, Button, Table, Modal, TreeSelect } from 'antd';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
 import { requestOrg } from "@/request/user";
 
 function User() {
   const [selectionType, setSelectionType] = useState('checkbox');
   const [treeData, settreeData] = useState([]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     getOrgList()
   }, []);
@@ -46,17 +46,36 @@ function User() {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: '賬號',
+      dataIndex: 'account',
+      width: 200,
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
+      title: '姓名',
+      dataIndex: 'name',
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: '手機號',
+      dataIndex: 'phone',
+    },
+    {
+      title: '郵箱',
+      dataIndex: 'email',
+    },
+    {
+      title: '角色',
+      dataIndex: 'role',
+    },
+    {
+      title: '狀態',
+      fixed: 'right',
+      dataIndex: 'phone',
+    },
+    {
+      title: '操作',
+      fixed: 'right',
+      dataIndex: 'phone',
     },
   ];
   const data = [
@@ -85,6 +104,11 @@ function User() {
       address: 'Sydney No. 1 Lake Park',
     },
   ];
+
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -129,7 +153,7 @@ function User() {
             <Button icon={<SearchOutlined />} type="primary">查詢</Button>
           </div>
           <div>
-            <Button icon={<PlusOutlined />} type="primary">新增</Button>
+            <Button onClick={showModal} icon={<PlusOutlined />} type="primary">新增</Button>
             <Button disabled type="primary">部門轉移</Button>
             <div>
               {treeData && <Table
@@ -145,6 +169,73 @@ function User() {
           </div>
         </div>
       </SplitPane>
+      <Modal centered className='add_modal' title="新增用戶" open={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+        <div>
+          <div>
+            <label>姓名</label>
+            <Input />
+          </div>
+          <div>
+            <label>手机号</label>
+            <Input />
+          </div>
+          <div>
+            <label>部門</label>
+            <TreeSelect
+              style={{ width: '100%' }}
+              // value={value}
+
+              allowClear
+              multiple
+              treeDefaultExpandAll
+              // onChange={onChange}
+              treeData={treeData}
+            />
+          </div>
+          <div>
+            <label>主屬部門</label>
+            <TreeSelect
+              style={{ width: '100%' }}
+              // value={value}
+              allowClear
+              multiple
+              treeDefaultExpandAll
+              // onChange={onChange}
+              treeData={treeData}
+            />
+          </div>
+          <div>
+            <label>賬號</label>
+            <Input />
+          </div>
+          <div>
+            <label>密碼</label>
+            <Input />
+          </div>
+          <div>
+            <label>直屬主管</label>
+            <Input />
+          </div>
+          <div>
+            <label>角色</label>
+            <Input />
+          </div>
+        </div>
+        <div className="email">
+          <label>郵箱</label>
+          <Input />
+        </div>
+        <div>
+          <div>
+            <label>職位</label>
+            <Input />
+          </div>
+          <div>
+            <label>性別</label>
+            <Input />
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
