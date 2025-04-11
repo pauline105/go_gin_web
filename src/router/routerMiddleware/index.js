@@ -13,11 +13,11 @@ const isTokenExpired = (token) => {
 };
 // import TabsContainer from '@/pages/TabsContainer'
 export const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (!token || isTokenExpired(token)) {
         // 清除過期 token
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         return <Navigate to="/login" replace />;
     }
 

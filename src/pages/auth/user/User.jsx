@@ -3,24 +3,46 @@ import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
 import { Input, Tree, Select, Button, Table, Modal, TreeSelect } from 'antd';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
-import { requestOrg } from "@/request/user";
+import { requestOrg, requestUserOrgTable } from "@/request/user";
 
 function User() {
-  const [selectionType, setSelectionType] = useState('checkbox');
   const [treeData, settreeData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [treeSelectValue, setTreeSelectValue] = useState([]);
+
   useEffect(() => {
     getOrgList()
+    getOrgTableList()
   }, []);
 
+  function addNameProperty(data) {
+    data.forEach(item => {
+      item.value = item.title;
+      if (item.children && item.children.length > 0) {
+        addNameProperty(item.children);
+      }
+    });
+  }
   // 獲取部門數據
   const getOrgList = async () => {
     try {
       const { data } = await requestOrg()
-      console.log(data.org_list);
+      addNameProperty(data.org_list)
+
       settreeData(data.org_list)
     } catch (e) {
       console.log(e);
+      return
+    }
+  }
+
+  // 獲取部門員工信息
+  const getOrgTableList = async () => {
+    try {
+      const { data } = await requestUserOrgTable()
+      console.log(data);
+    } catch (error) {
+      console.log(error);
       return
     }
   }
@@ -158,7 +180,7 @@ function User() {
             <div>
               {treeData && <Table
                 rowSelection={{
-                  type: selectionType,
+                  type: "checkbox",
                   ...rowSelection,
                 }}
                 columns={columns}
@@ -183,25 +205,24 @@ function User() {
             <label>部門</label>
             <TreeSelect
               style={{ width: '100%' }}
-              // value={value}
-
+              value={treeSelectValue}
               allowClear
               multiple
               treeDefaultExpandAll
-              // onChange={onChange}
+              onChange={(value) => setTreeSelectValue(value)}
               treeData={treeData}
+              maxTagCount={1}
             />
           </div>
           <div>
             <label>主屬部門</label>
-            <TreeSelect
+            <Select
               style={{ width: '100%' }}
-              // value={value}
-              allowClear
-              multiple
-              treeDefaultExpandAll
-              // onChange={onChange}
-              treeData={treeData}
+              mode="multiple"
+              // value={treeSelectValue && treeSelectValue.map(item => item.value)} // 這樣選中的 value 是正確的
+              options={treeSelectValue.length == 0 ? [] : treeSelectValue.map(item => ({ value: item, label: item }))}
+              placeholder="已選項目"
+              maxTagCount={1}
             />
           </div>
           <div>
@@ -232,7 +253,13 @@ function User() {
           </div>
           <div>
             <label>性別</label>
-            <Input />
+            <Select
+              style={{ width: '100%' }}
+              placeholder='請選擇'
+              options={[
+                { label: '男', value: '男' },
+                { label: '女', value: '女' }
+              ]} />
           </div>
         </div>
       </Modal>

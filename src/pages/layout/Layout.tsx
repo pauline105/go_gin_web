@@ -38,7 +38,7 @@ const LayoutComponent: React.FC = () => {
 
   // 退出登錄
   const loginOut = () => {
-    localStorage.clear()
+    sessionStorage.clear()
     navigate('login')
   }
 
@@ -142,7 +142,7 @@ const LayoutComponent: React.FC = () => {
               <Dropdown overlayClassName='header-dropdown' menu={{ items: dropDownItems }}>
                 <div>
                   <img src={userInfo?.avatar} alt="" />
-                  <span>  {userInfo?.role}<DownOutlined /></span>
+                  <span>  {userInfo?.name}<DownOutlined /></span>
                 </div>
               </Dropdown>
             </div>

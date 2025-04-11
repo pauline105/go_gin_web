@@ -43,7 +43,7 @@ function Login() {
       const { data } = await requestLogin({ "username": username, "password": password })
       if (data.status === 200) {
         message.success("登錄成功,即將跳轉首頁")
-        localStorage.setItem("token", data.token)
+        sessionStorage.setItem("token", data.token)
         setTimeout(() => {
           navigate("/workbench")
         }, 500);

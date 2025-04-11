@@ -14,7 +14,7 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     // 获取本地存储的 token
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token; // 在请求头中添加 token
     }
@@ -40,7 +40,7 @@ request.interceptors.response.use(
           break;
         case 401:
           console.error("未授权，跳转登录");
-          localStorage.removeItem("token"); // 清除 token
+          sessionStorage.removeItem("token"); // 清除 token
           window.location.href = "/login"; // 跳转到登录页面
           break;
         case 403:
