@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "43819320",
+      "name": "edit-04",
+      "font_class": "edit-04",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
       "icon_id": "8281406",
       "name": "peony",
       "font_class": "peony",

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
-import { Input, Tree, Select, Button, Table, Modal, TreeSelect } from 'antd';
-import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
+import { Input, Tree, Select, Button, Table, Modal, TreeSelect, Switch } from 'antd';
+
+import { SearchOutlined, PlusOutlined, DownOutlined } from '@ant-design/icons';
 import { requestOrg, requestUserOrgTable } from "@/request/user";
 
 function User() {
   const [treeData, settreeData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [treeSelectValue, setTreeSelectValue] = useState([]);
+  const [orgData, setOrgData] = useState([]);
 
   useEffect(() => {
     getOrgList()
@@ -40,7 +42,8 @@ function User() {
   const getOrgTableList = async () => {
     try {
       const { data } = await requestUserOrgTable()
-      console.log(data);
+      console.log(data.org_list);
+      setOrgData(data.org_list)
     } catch (error) {
       console.log(error);
       return
@@ -69,7 +72,7 @@ function User() {
   const columns = [
     {
       title: '賬號',
-      dataIndex: 'account',
+      dataIndex: 'username',
       width: 200,
       render: (text) => <a>{text}</a>,
     },
@@ -92,38 +95,30 @@ function User() {
     {
       title: '狀態',
       fixed: 'right',
-      dataIndex: 'phone',
+      width: 60,
+      rowClassName: (record, index) => {
+        console.log(record);
+        return 'switch';
+      },
+      render: (value) => {
+        return <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked={value}></Switch>
+      }
     },
     {
       title: '操作',
       fixed: 'right',
-      dataIndex: 'phone',
-    },
-  ];
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-    },
-    {
-      key: '4',
-      name: 'Disabled User',
-      age: 99,
-      address: 'Sydney No. 1 Lake Park',
+      width: 140,
+      render: () => {
+        return <div>
+          <Button icon={
+            <svg class="icon svg-icon" aria-hidden="true">
+              <use xlinkHref="#edit-04"></use>
+            </svg>}>編輯</Button>
+          <Button icon={<DownOutlined />} iconPosition={"end"} type="primary">
+            更多
+          </Button>
+        </div>
+      }
     },
   ];
 
@@ -160,6 +155,7 @@ function User() {
             </div>
             {treeData.length != 0 && <Tree
               defaultExpandAll
+              defaultSelectedKeys={[treeData[0].key]}
               blockNode
               onSelect={onSelect}
               onExpand={onExpand}
@@ -184,8 +180,9 @@ function User() {
                   ...rowSelection,
                 }}
                 columns={columns}
-                dataSource={data}
+                dataSource={orgData}
                 bordered
+                rowKey="id"
               />}
             </div>
           </div>

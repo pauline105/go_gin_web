@@ -11,7 +11,7 @@
   }
 
   .Pane1 {
-    min-width: 400px;
+    min-width: 400px !important;
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
@@ -71,7 +71,8 @@
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
-    min-width: 1100px;
+    min-width: 1100px !important;
+    max-width: 1200px;
 
     >div {
       >div:nth-child(1) {
@@ -115,10 +116,53 @@
         }
       }
 
+
       >div:nth-child(2) {
         padding: 10px;
 
-        .ant-btn {
+        .ant-table {
+          .ant-table-tbody {
+            >tr {
+
+              >td:nth-child(7) {
+                display: flex;
+                justify-content: center;
+
+                .ant-switch {
+                  width: 60px;
+                }
+              }
+
+              >td:nth-child(8) {
+                >div {
+                  display: flex;
+                  justify-content: center;
+
+                  .ant-btn {
+                    padding: 0;
+                  }
+
+                  .ant-btn:nth-child(2) {
+                    margin-left: 10px;
+                  }
+                }
+
+
+              }
+
+              .ant-btn {
+                border-color: transparent;
+                background-color: transparent;
+                height: auto;
+                box-shadow: none;
+                font-size: 12px;
+                color: #409EFF;
+              }
+            }
+          }
+        }
+
+        >.ant-btn {
           height: 32px;
           margin-bottom: 20px;
         }
