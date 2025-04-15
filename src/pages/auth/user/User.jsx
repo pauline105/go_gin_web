@@ -1,21 +1,43 @@
 import React, { useState, useEffect } from "react";
 import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
-import { Input, Tree, Select, Button, Table, Modal, TreeSelect, Switch } from 'antd';
+import { Input, Tree, Select, Button, Table, Modal, TreeSelect, Switch, Dropdown } from 'antd';
 
 import { SearchOutlined, PlusOutlined, DownOutlined } from '@ant-design/icons';
 import { requestOrg, requestUserOrgTable } from "@/request/user";
 
 function User() {
   const [treeData, settreeData] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [treeSelectValue, setTreeSelectValue] = useState([]);
   const [orgData, setOrgData] = useState([]);
+  // 表格數據加載
+  const [tableSpin, setTableSpin] = useState(true);
+
+  // 員工資料
+  const [userProfile, setUserProfile] = useState({
+    name: '',
+    phone: '',
+    user: '',
+    role: '',
+    email: '',
+    position: '',
+    gender: '',
+    director: ''
+  })
 
   useEffect(() => {
-    getOrgList()
-    getOrgTableList()
+    const init = async () => {
+      await getOrgList();
+    }
+    init();
   }, []);
+  useEffect(() => {
+    if (treeData.length !== 0 && treeData[0].key) {
+      getOrgTableList(treeData[0].key)
+    }
+  }, [treeData]);
 
   function addNameProperty(data) {
     data.forEach(item => {
@@ -39,11 +61,12 @@ function User() {
   }
 
   // 獲取部門員工信息
-  const getOrgTableList = async () => {
+  const getOrgTableList = async (keyword) => {
     try {
-      const { data } = await requestUserOrgTable()
-      console.log(data.org_list);
+      setTableSpin(true)
+      const { data } = await requestUserOrgTable({ keyword })
       setOrgData(data.org_list)
+      setTableSpin(false)
     } catch (error) {
       console.log(error);
       return
@@ -95,7 +118,7 @@ function User() {
     {
       title: '狀態',
       fixed: 'right',
-      width: 60,
+      width: 70,
       rowClassName: (record, index) => {
         console.log(record);
         return 'switch';
@@ -108,23 +131,81 @@ function User() {
       title: '操作',
       fixed: 'right',
       width: 140,
-      render: () => {
+      render: (value, record) => {
         return <div>
-          <Button icon={
-            <svg class="icon svg-icon" aria-hidden="true">
+          <Button onClick={() => {
+            console.log(record);
+            setUserProfile({
+              name: record.name,
+              email: record.email,
+              phone: record.phone,
+              role: record.role,
+              user: record.username,
+              position: record.position,
+              gender: record.gender
+            })
+            setEditModal(true)
+          }} icon={
+            <svg className="icon svg-icon" aria-hidden="true">
               <use xlinkHref="#edit-04"></use>
-            </svg>}>編輯</Button>
-          <Button icon={<DownOutlined />} iconPosition={"end"} type="primary">
-            更多
+            </svg>}>
+            編輯
           </Button>
+          <Dropdown menu={{ items }} placement="bottom" arrow>
+
+            <Button icon={<DownOutlined />} iconPosition={"end"} type="primary">
+              更多
+            </Button>
+          </Dropdown>
+
         </div>
       }
     },
   ];
 
+  const items = [
+    {
+      key: '1',
+      label: "設置主管",
+    },
+    {
+      key: '2',
+      label: "重置密碼",
+    },
+    {
+      key: '3',
+      label: "刪除用戶",
+    },
+    {
+      key: '4',
+      label: "一鍵登錄",
+    },
+    {
+      key: '5',
+      label: "強制下線",
+    },
+
+  ];
+
+  const editTreeData = [
+    {
+      value: '崗位',
+      title: '崗位',
+      children: [
+        {
+          value: '超級管理員',
+          title: '超級管理員',
+        },
+        {
+          value: '普通員工',
+          title: '普通員工',
+        }
+      ]
+    }
+  ]
 
   const showModal = () => {
-    setIsModalOpen(true);
+    setAddModalOpen(true);
   };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -136,8 +217,8 @@ function User() {
       name: record.name,
     }),
   };
-  const onSelect = (keys, info) => {
-    console.log('Trigger Select', keys, info);
+  const onSelect = (_, info) => {
+    getOrgTableList(info.node.key)
   };
   const onExpand = (keys, info) => {
     console.log('Trigger Expand', keys, info);
@@ -160,7 +241,6 @@ function User() {
               onSelect={onSelect}
               onExpand={onExpand}
               treeData={treeData}
-              expandAction="click"
             />}
           </div>
         </div>
@@ -174,21 +254,24 @@ function User() {
             <Button onClick={showModal} icon={<PlusOutlined />} type="primary">新增</Button>
             <Button disabled type="primary">部門轉移</Button>
             <div>
-              {treeData && <Table
-                rowSelection={{
-                  type: "checkbox",
-                  ...rowSelection,
-                }}
-                columns={columns}
-                dataSource={orgData}
-                bordered
-                rowKey="id"
-              />}
+              {treeData &&
+                <Table
+                  rowSelection={{
+                    type: "checkbox",
+                    ...rowSelection,
+                  }}
+                  columns={columns}
+                  dataSource={orgData}
+                  bordered
+                  rowKey="id"
+                  loading={tableSpin}
+                />
+              }
             </div>
           </div>
         </div>
       </SplitPane>
-      <Modal centered className='add_modal' title="新增用戶" open={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+      <Modal centered className='add_modal' title="新增用戶" open={addModalOpen} onOk={() => setAddModalOpen(false)} onCancel={() => setAddModalOpen(false)}>
         <div>
           <div>
             <label>姓名</label>
@@ -258,6 +341,50 @@ function User() {
                 { label: '女', value: '女' }
               ]} />
           </div>
+        </div>
+      </Modal>
+      <Modal centered className='edit_modal' title="編輯用戶" open={editModal} onOk={() => setEditModal(false)} onCancel={() => setEditModal(false)}>
+        <div>
+          <label>姓名</label>
+          <Input value={userProfile.name} />
+        </div>
+        <div>
+          <label>手機號</label>
+          <Input value={userProfile.phone} />
+        </div>
+        <div>
+          <label>賬號</label>
+          <Input value={userProfile.user} />
+        </div>
+        <div>
+          <label>直屬主管</label>
+          <Input value={userProfile.director} />
+        </div>
+        <div>
+          <label>角色</label>
+          <TreeSelect
+            showSearch
+            style={{ width: '100%' }}
+            value={userProfile.role}
+            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+            placeholder="請選擇主管"
+            allowClear
+            treeDefaultExpandAll
+            // onChange={onChange}
+            treeData={editTreeData}
+          />
+        </div>
+        <div>
+          <label>郵箱</label>
+          <Input value={userProfile.email} />
+        </div>
+        <div>
+          <label>職位</label>
+          <Input value={userProfile.position} />
+        </div>
+        <div>
+          <label>性別</label>
+          <Input value={userProfile.gender} />
         </div>
       </Modal>
     </div>

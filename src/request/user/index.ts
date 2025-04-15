@@ -9,9 +9,10 @@ export const requestOrg = () => {
 
 
 // 獲取部門員工信息
-export const requestUserOrgTable = () => {
+export const requestUserOrgTable = (params: { keyword: string }) => {
     return request({
         method: "get",
-        url: 'userDataList'
+        url: 'userDataList',
+        params
     })
 }
