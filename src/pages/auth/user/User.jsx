@@ -96,8 +96,6 @@ function User() {
     {
       title: '賬號',
       dataIndex: 'username',
-      width: 200,
-      render: (text) => <a>{text}</a>,
     },
     {
       title: '姓名',
@@ -118,11 +116,6 @@ function User() {
     {
       title: '狀態',
       fixed: 'right',
-      width: 70,
-      rowClassName: (record, index) => {
-        console.log(record);
-        return 'switch';
-      },
       render: (value) => {
         return <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked={value}></Switch>
       }
@@ -225,11 +218,11 @@ function User() {
   };
   return (
     <div className="user_container">
-      <SplitPane split="vertical" minSize={50} defaultSize={1200} primary="second">
+      <SplitPane split="vertical" minSize={300} primary="first">
         <div>
           <div>
             <div className="search_box">
-              <Input
+            <Input
                 placeholder="篩選部門"
               // onChange={onChange}
               />
@@ -265,6 +258,7 @@ function User() {
                   bordered
                   rowKey="id"
                   loading={tableSpin}
+                  scroll={{ x: 'max-content' }}
                 />
               }
             </div>

@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .user_container {
   position: relative;
@@ -8,10 +8,11 @@
 
   .SplitPane {
     display: flex;
+    width: 100%;
   }
 
   .Pane1 {
-    min-width: 400px !important;
+    max-width: 400px !important;
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
@@ -48,7 +49,6 @@
       .ant-tree-treenode {
         width: 100%;
 
-
         &:hover {
           cursor: pointer;
           background-color: rgba($color: #000, $alpha: 0.03);
@@ -71,11 +71,9 @@
     border: 1px solid $border-color;
     border-radius: 5px;
     background-color: #fff;
-    min-width: 1100px !important;
-    max-width: 1200px;
-
-    >div {
-      >div:nth-child(1) {
+    width: 100%!important;
+    > div {
+      > div:nth-child(1) {
         display: flex;
         height: 52px;
         border-bottom: 1px solid $border-color;
@@ -116,15 +114,13 @@
         }
       }
 
-
-      >div:nth-child(2) {
+      > div:nth-child(2) {
         padding: 10px;
 
         .ant-table {
           .ant-table-tbody {
-            >tr {
-
-              >td:nth-child(7) {
+            > tr {
+              > td:nth-child(7) {
                 display: flex;
                 justify-content: center;
 
@@ -133,8 +129,8 @@
                 }
               }
 
-              >td:nth-child(8) {
-                >div {
+              > td:nth-child(8) {
+                > div {
                   display: flex;
                   justify-content: center;
 
@@ -146,8 +142,6 @@
                     margin-left: 10px;
                   }
                 }
-
-
               }
 
               .ant-btn {
@@ -156,18 +150,18 @@
                 height: auto;
                 box-shadow: none;
                 font-size: 12px;
-                color: #409EFF;
+                color: #409eff;
               }
             }
           }
         }
 
-        >.ant-btn {
+        > .ant-btn {
           height: 32px;
           margin-bottom: 20px;
         }
 
-        >.ant-btn:nth-child(1) {
+        > .ant-btn:nth-child(1) {
           margin-right: 14px;
         }
 
@@ -219,18 +213,18 @@
   .ant-modal-body {
     padding: 20px;
 
-    >div:nth-child(1),
-    >div:nth-child(3) {
+    > div:nth-child(1),
+    > div:nth-child(3) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 10px;
       row-gap: 14px;
 
-      >div {
+      > div {
         display: flex;
         align-items: center;
 
-        >label {
+        > label {
           flex-shrink: 0;
           width: 80px;
           padding-right: 12px;
@@ -243,23 +237,20 @@
       }
     }
 
-
-    >div:nth-child(2) {
+    > div:nth-child(2) {
       display: flex;
       align-items: center;
       text-align: right;
       margin-top: 14px;
 
-      >label {
+      > label {
         padding-right: 12px;
         width: 80px;
         flex-shrink: 0;
       }
-
-
     }
 
-    >div:nth-child(3) {
+    > div:nth-child(3) {
       margin-top: 14px;
     }
   }
@@ -275,11 +266,11 @@
     column-gap: 10px;
     row-gap: 14px;
 
-    >div {
+    > div {
       display: flex;
       align-items: center;
 
-      >label {
+      > label {
         flex-shrink: 0;
         width: 80px;
         padding-right: 12px;
@@ -288,7 +279,7 @@
 
       .ant-input,
       .ant-select {
-        width: 240px!important;
+        width: 240px !important;
       }
     }
   }
