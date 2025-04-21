@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SplitPane from "react-split-pane";
 import '@/style/auth/user.scss'
 import { Input, Tree, Select, Button, Table, Modal, TreeSelect, Switch, Dropdown } from 'antd';
@@ -33,13 +33,14 @@ function User() {
     }
     init();
   }, []);
+
   useEffect(() => {
     if (treeData.length !== 0 && treeData[0].key) {
       getOrgTableList(treeData[0].key)
     }
   }, [treeData]);
 
-  function addNameProperty(data) {
+  const addNameProperty = (data) => {
     data.forEach(item => {
       item.value = item.title;
       if (item.children && item.children.length > 0) {
@@ -48,7 +49,7 @@ function User() {
     });
   }
   // 獲取部門數據
-  const getOrgList = async () => {
+  const getOrgList = useCallback(async () => {
     try {
       const { data } = await requestOrg()
       addNameProperty(data.org_list)
@@ -58,7 +59,10 @@ function User() {
       console.log(e);
       return
     }
-  }
+  })
+
+
+
 
   // 獲取部門員工信息
   const getOrgTableList = async (keyword) => {
@@ -116,6 +120,7 @@ function User() {
     {
       title: '狀態',
       fixed: 'right',
+      width: 60,
       render: (value) => {
         return <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked={value}></Switch>
       }
@@ -218,16 +223,16 @@ function User() {
   };
   return (
     <div className="user_container">
-      <SplitPane split="vertical" minSize={300} primary="first">
+      <SplitPane paneStyle={{ overflow: 'hidden' }} split="vertical" minSize={300} defaultSize={300} primary="first">
         <div>
           <div>
             <div className="search_box">
-            <Input
+              <Input
                 placeholder="篩選部門"
               // onChange={onChange}
               />
             </div>
-            {treeData.length != 0 && <Tree
+            {treeData.length !== 0 && <Tree
               defaultExpandAll
               defaultSelectedKeys={[treeData[0].key]}
               blockNode
@@ -294,7 +299,7 @@ function User() {
               style={{ width: '100%' }}
               mode="multiple"
               // value={treeSelectValue && treeSelectValue.map(item => item.value)} // 這樣選中的 value 是正確的
-              options={treeSelectValue.length == 0 ? [] : treeSelectValue.map(item => ({ value: item, label: item }))}
+              options={treeSelectValue.length === 0 ? [] : treeSelectValue.map(item => ({ value: item, label: item }))}
               placeholder="已選項目"
               maxTagCount={1}
             />

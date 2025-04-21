@@ -5,24 +5,69 @@ import {
   MenuUnfoldOutlined,
   DownOutlined
 } from '@ant-design/icons';
-import { Outlet, useNavigate } from 'react-router-dom';
-
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Button, Layout, Menu, Breadcrumb, Dropdown, Tooltip } from 'antd';
 import type { userInfoType } from '../../type/user'
 import { requestUserInfo } from '../../request/layout'
 const { Header, Sider, Content } = Layout;
+type MenuItem = {
+  key: string | number;
+  title: string;
+  path?: string;
+  children?: MenuItem[];
+};
 
 const LayoutComponent: React.FC = () => {
+  const location = useLocation()
   const [collapsed, setCollapsed] = useState(false);
   // 用戶信息
   const [userInfo, setUserInfo] = useState<userInfoType>()
   // 菜單數據
   const [menu, setMenuData] = useState([])
+  const [selectedKey, setSelectedKey] = useState<string>("")
+  const [openKey, setOpenKey] = useState<string>("")
   const navigate = useNavigate()
   useEffect(() => {
     document.title = '控制台 - WalAdmin'
     getUserInfoHandle()
+
   }, [])
+  useEffect(() => {
+    if (!menu || menu.length === 0) return;
+    const { selectedKey, openKey } = findMenuKeys(menu, location.pathname);
+    setSelectedKey(selectedKey);
+    setOpenKey(openKey);
+  }, [menu, location.pathname])
+
+  // 設置menu菜單選中和打開選項
+  const findMenuKeys = (menuData: MenuItem[], currentPath: string) => {
+    for (const item of menuData) {
+      if (item.path === currentPath) {
+
+        return {
+
+          selectedKey: String(item.key),
+          openKey: '',
+        };
+      }
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === currentPath) {
+            return {
+              selectedKey: String(child.key),
+              openKey: String(item.key),
+            };
+          }
+        }
+      }
+    }
+    return {
+      selectedKey: '',
+      openKey: '',
+    };
+  };
+
+
 
   // 獲取用戶信息
   const getUserInfoHandle = async () => {
@@ -45,7 +90,6 @@ const LayoutComponent: React.FC = () => {
   // 點擊菜單事件
   const menuClickHandle = (item: any) => {
     const { path } = item.item.props
-    console.log(path);
     navigate(path)
   }
 
@@ -92,13 +136,14 @@ const LayoutComponent: React.FC = () => {
           <div className='logo'>WalAdmin</div>
           <div className='menu_box'>
             {menu && menu.length !== 0 && <Menu
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
+              selectedKeys={[selectedKey]}
+              openKeys={[openKey]}
               mode="inline"
               theme="dark"
               inlineCollapsed={collapsed}
               items={transformMenuData(menu)}
               onClick={(item) => menuClickHandle(item)}
+              onOpenChange={keys => setOpenKey(keys[1])}
             />}
           </div>
         </Sider>
