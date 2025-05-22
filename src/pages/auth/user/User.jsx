@@ -32,7 +32,7 @@ function User() {
       await getOrgList();
     }
     init();
-  }, []);
+  }, [getOrgList]);
 
   useEffect(() => {
     if (treeData.length !== 0 && treeData[0].key) {
@@ -59,7 +59,7 @@ function User() {
       console.log(e);
       return
     }
-  })
+  },[])
 
 
 

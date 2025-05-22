@@ -20,7 +20,8 @@ function Login() {
   const [register, setRegister] = useState("login")
   useEffect(() => {
     document.title = "WalAdmin"
-    initHandle()
+    username.trim() !== "" ? setUserTips("用戶名") : setUserTips('請輸入用戶名')
+    password.trim() !== "" ? setPwdTips("密碼") : setPwdTips("請輸入密碼")
   }, [])
 
   // 註冊用戶事件
@@ -53,13 +54,6 @@ function Login() {
     }
   }
 
-  //  初始化是否用戶名於密碼 
-  const initHandle = () => {
-    username.trim() !== "" ? setUserTips("用戶名") : setUserTips('請輸入用戶名')
-
-    password.trim() !== "" ? setPwdTips("密碼") : setPwdTips("請輸入密碼")
-
-  }
   // 登錄事件
   const loginBtnHandle = () => {
     if (register === "login") {
