@@ -27,12 +27,24 @@ function User() {
     director: ''
   })
 
+  // 獲取部門數據
+  const getOrgList = useCallback(async () => {
+    try {
+      const { data } = await requestOrg()
+      addNameProperty(data.org_list)
+
+      settreeData(data.org_list)
+    } catch (e) {
+      console.log(e);
+      return
+    }
+  },[addNameProperty])
   useEffect(() => {
     const init = async () => {
       await getOrgList();
     }
     init();
-  }, [getOrgList]);
+  }, []);
 
   useEffect(() => {
     if (treeData.length !== 0 && treeData[0].key) {
@@ -48,18 +60,7 @@ function User() {
       }
     });
   }
-  // 獲取部門數據
-  const getOrgList = useCallback(async () => {
-    try {
-      const { data } = await requestOrg()
-      addNameProperty(data.org_list)
 
-      settreeData(data.org_list)
-    } catch (e) {
-      console.log(e);
-      return
-    }
-  },[])
 
 
 
