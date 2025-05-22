@@ -26,14 +26,14 @@ function User() {
     gender: '',
     director: ''
   })
-  const addNameProperty = (data) => {
+  const addNameProperty = useCallback((data) => {
     data.forEach(item => {
       item.value = item.title;
       if (item.children && item.children.length > 0) {
         addNameProperty(item.children);
       }
     });
-  }
+  }, []);
   // 獲取部門數據
   const getOrgList = useCallback(async () => {
     try {

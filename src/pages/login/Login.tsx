@@ -22,7 +22,7 @@ function Login() {
     document.title = "WalAdmin"
     username.trim() !== "" ? setUserTips("用戶名") : setUserTips('請輸入用戶名')
     password.trim() !== "" ? setPwdTips("密碼") : setPwdTips("請輸入密碼")
-  }, [])
+  }, [username,password])
 
   // 註冊用戶事件
   const registerHandle = async () => {
