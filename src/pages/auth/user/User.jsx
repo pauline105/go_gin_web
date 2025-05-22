@@ -26,7 +26,14 @@ function User() {
     gender: '',
     director: ''
   })
-
+  const addNameProperty = (data) => {
+    data.forEach(item => {
+      item.value = item.title;
+      if (item.children && item.children.length > 0) {
+        addNameProperty(item.children);
+      }
+    });
+  }
   // 獲取部門數據
   const getOrgList = useCallback(async () => {
     try {
@@ -38,13 +45,13 @@ function User() {
       console.log(e);
       return
     }
-  },[addNameProperty])
+  }, [addNameProperty])
   useEffect(() => {
     const init = async () => {
       await getOrgList();
     }
     init();
-  }, []);
+  }, [getOrgList]);
 
   useEffect(() => {
     if (treeData.length !== 0 && treeData[0].key) {
@@ -52,14 +59,7 @@ function User() {
     }
   }, [treeData]);
 
-  const addNameProperty = (data) => {
-    data.forEach(item => {
-      item.value = item.title;
-      if (item.children && item.children.length > 0) {
-        addNameProperty(item.children);
-      }
-    });
-  }
+
 
 
 
