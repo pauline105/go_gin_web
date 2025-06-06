@@ -46,7 +46,7 @@ function Login() {
       //   message.success("登錄成功,即將跳轉首頁")
       //   sessionStorage.setItem("token", data.token)
       message.success("登錄成功,即將跳轉首頁")
-          navigate("/workbench")
+          navigate("/workbench ww")
       // }
     } catch (error) {
       console.log(error);
