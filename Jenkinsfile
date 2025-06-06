@@ -1,6 +1,9 @@
 pipeline{
-    agent any
-
+    agent {
+        docker {
+            image 'node:18'  // 或者 node:20 等等
+        }
+    }
     stages{
         stage('build project'){
             steps{
