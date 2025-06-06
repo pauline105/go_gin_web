@@ -41,14 +41,13 @@ function Login() {
   // 登錄事件
   const loginHandle = async () => {
     try {
-      const { data } = await requestLogin({ "username": username, "password": password })
-      if (data.status === 200) {
-        message.success("登錄成功,即將跳轉首頁")
-        sessionStorage.setItem("token", data.token)
-        setTimeout(() => {
+      // const { data } = await requestLogin({ "username": username, "password": password })
+      // if (data.status === 200) {
+      //   message.success("登錄成功,即將跳轉首頁")
+      //   sessionStorage.setItem("token", data.token)
+      message.success("登錄成功,即將跳轉首頁")
           navigate("/workbench")
-        }, 500);
-      }
+      // }
     } catch (error) {
       console.log(error);
     }
